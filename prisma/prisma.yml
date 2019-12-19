@@ -1,0 +1,12 @@
+
+#endpoint: ''
+endpoint: https://resumeqbe-8689136a16.herokuapp.com/quality-hub-resume-be/dev
+
+datamodel: datamodel.prisma
+
+generate:
+    - generator: javascript-client
+      output: ./generated/prisma-client
+
+## seed:
+#   import seed.graphql
