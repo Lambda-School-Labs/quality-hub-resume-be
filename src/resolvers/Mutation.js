@@ -5,7 +5,7 @@ module.exports = {
 	updatePost,
 	deleteIndustry,
 	updateIndustry,
-	removeTagFromPost,
+	removeTagrqFromPost,
 }
 
 const { checkFields, splitAndTrimTags, getUserId } = require('../utils')
@@ -173,7 +173,7 @@ function updateIndustry(_parent, args, context) {
 	})
 }
 
-async function removeTagFromPost(_parent, args, context) {
+async function removeTagFromrqPost(_parent, args, context) {
 	const { id, tagID } = args
 
 	const updatedPost = await context.prisma.updatePost({
