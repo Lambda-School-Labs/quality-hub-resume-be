@@ -8,5 +8,5 @@ generate:
     - generator: javascript-client
       output: ./generated/prisma-client
 
-## seed:
-#   import seed.graphql
+# seed:
+#   import: seed.graphql

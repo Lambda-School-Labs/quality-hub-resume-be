@@ -5,7 +5,7 @@ module.exports = {
 	updatePost,
 	deleteIndustry,
 	updateIndustry,
-	removeTagrqFromPost,
+	removeTagFromrqPost,
 }
 
 const { checkFields, splitAndTrimTags, getUserId } = require('../utils')
