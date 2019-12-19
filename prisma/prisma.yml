@@ -10,3 +10,5 @@ generate:
 
 # seed:
 #   import: seed.graphql
+
+## run
