@@ -1,8 +1,8 @@
 
 module.exports = {
     resumeQinfo,
-    post,
-    posts,
+    rqpost,
+    rqposts,
     industry,
     industries,
 }
@@ -11,12 +11,12 @@ function resumeQinfo(){
     return "Welcome to ResumeQ"
 }
 
-function post(_parent, args, context){
-    return context.prisma.post({ id: args.id })
+function rqpost(_parent, args, context){
+    return context.prisma.rqpost({ id: args.id })
 }
 
-function posts(_parent, args, context){
-    return context.prisma.posts({ posts: args.posts })
+function rqposts(_parent, args, context){
+    return context.prisma.rqposts({ posts: args.posts })
 }
 
 function industry(_parents, args, context){

@@ -66,7 +66,7 @@ extend type User @key(fields: "id"){
 type Job{
     id: ID!
     name: String!
-    rqposts: [rqPost]!w
+    rqposts: [rqPost]!
     isPending: Boolean!
     isAccepted: Boolean!
     isDenied: Boolean!
