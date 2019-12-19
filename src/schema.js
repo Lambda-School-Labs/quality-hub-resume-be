@@ -4,43 +4,43 @@ const typeDefs = gql`
 
 extend type Query{
     resumeQinfo: String!
-    posts(
+    rqposts(
         industry: String
         price: String
         orderBy: String
         tags: String
         ids: [String]
-    ): [Post!]!
-    post(id: String!): Post!
-    postByCoach(coach_id: String!): Post!
-    industries: [Industry!]
-    industry(name: String!): [Post!]!
+    ): [rqPost!]!
+    rqpost(id: String!): rqPost!
+    rqpostByCoach(coach_id: String!): rqPost!
+    rqindustries: [Industry!]
+    rqindustry(name: String!): [rqPost!]!
 }
 
 type Mutation{
-    createPost(
+    createrqPost(
         price: Int!
         position: String!
         industryName: String!
         description: String!
-    ): Post!
+    ): rqPost!
 
-    deletePost(id: String!): Post!
+    deleterqPost(id: String!): rqPost!
 
-    updatePost(
+    updaterqPost(
         id: String!
         price: Int
         position: String
         industryName: String
         description: String
-    ): Post!
+    ): rqPost!
 
-    removeTagFromPost(id: ID!, tagID: String): Post!
+    removeTagFromrqPost(id: ID!, tagID: String): rqPost!
 }
 
 scalar DateTime
 
-type Post{
+type rqPost{
     id: ID!
     price: Int
     position: String
@@ -60,13 +60,13 @@ type Post{
 
 extend type User @key(fields: "id"){
     id: ID! @external
-    post: Post
+    rqpost: rqPost
 }
 
 type Job{
     id: ID!
     name: String!
-    posts: [Post]!
+    rqposts: [rqPost]!w
     isPending: Boolean!
     isAccepted: Boolean!
     isDenied: Boolean!
@@ -79,15 +79,14 @@ type Job{
 type Industry{
     id: ID!
     name: String!
-    posts: [Post]!
+    rqposts: [rqPost]!
 }
 
 type Tag{
     id: ID!
     name: String!
-    posts: [Post]!
+    rqposts: [rqPost]!
 }
-
 `
 
 module.exports = typeDefs
