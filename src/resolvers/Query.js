@@ -3,8 +3,8 @@ module.exports = {
     resumeQinfo,
     rqpost,
     rqposts,
-    industry,
-    industries,
+    rqindustry,
+    rqindustries,
 }
 
 function resumeQinfo(){
@@ -16,13 +16,13 @@ function rqpost(_parent, args, context){
 }
 
 function rqposts(_parent, args, context){
-    return context.prisma.rqposts({ posts: args.posts })
+    return context.prisma.rqposts({ rqposts: args.rqposts })
 }
 
-function industry(_parents, args, context){
-    return context.prisma.industry({ where: { industry: { name: args.name }}})
+function rqindustry(_parents, args, context){
+    return context.prisma.rqindustry({ where: { rqindustry: { name: args.name }}})
 }
 
-function industries(_parent, args, context){
-    return context.prisma.industries()
+function rqindustries(_parent, args, context){
+    return context.prisma.rqindustries()
 }

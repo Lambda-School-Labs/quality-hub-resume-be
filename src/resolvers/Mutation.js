@@ -1,8 +1,8 @@
 
 module.exports = {
-	createPost,
-	deletePost,
-	updatePost,
+	createrqPost,
+	deleterqPost,
+	updaterqPost,
 	deleteIndustry,
 	updateIndustry,
 	removeTagFromrqPost,
@@ -11,7 +11,7 @@ module.exports = {
 const { checkFields, splitAndTrimTags, getUserId } = require('../utils')
 
 // Mutations/Operations for Post
-async function createPost(_parent, args, context) {
+async function createrqPost(_parent, args, context) {
 	let {
 		price,
 		position,
@@ -44,7 +44,7 @@ async function createPost(_parent, args, context) {
 		const tagsObjArray = await addNewTags(tagArray, context)
 
 		return Promise.all(tagsObjArray).then(tags => {
-			return context.prisma.createPost({
+			return context.prisma.createrqPost({
 				price,
 				position,
 				position_lc,
@@ -59,7 +59,7 @@ async function createPost(_parent, args, context) {
 			})
 		})
 	} else {
-		return context.prisma.createPost({
+		return context.prisma.createrqPost({
 			price,
 			position,
 			position_lc,
@@ -74,18 +74,18 @@ async function createPost(_parent, args, context) {
 	}
 }
 
-async function deletePost(_parent, _args, context) {
+async function deleterqPost(_parent, _args, context) {
 	const id = getUserId(context)
 	let foundPostTags = await context.prisma
 		.post({ coachID: id })
 		.tags()
 		.id()
-	updatedPost = await context.prisma.deletePost({ coachID: id })
+	updatedPost = await context.prisma.deleterqPost({ coachID: id })
 	deleteDisconnectedTags(context, foundPostTags)
 	return updatedPost
 }
 
-async function updatePost(_parent, args, context) {
+async function updaterqPost(_parent, args, context) {
 	let {
 		id,
 		price,
@@ -100,7 +100,7 @@ async function updatePost(_parent, args, context) {
 		tagString = tagString.toLowerCase()
 		const tagArray = splitAndTrimTags(tagString)
 		const tagsObjArray = await addNewTags(tagArray, context)
-		return await context.prisma.updatePost({
+		return await context.prisma.updaterqPost({
 			data: {
 				price,
 				position,
@@ -114,7 +114,7 @@ async function updatePost(_parent, args, context) {
 			},
 		})
 	} else if (industryName) {
-		return await context.prisma.updatePost({
+		return await context.prisma.updaterqPost({
 			data: {
 				price,
 				position,

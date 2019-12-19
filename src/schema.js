@@ -5,7 +5,7 @@ const typeDefs = gql`
 extend type Query{
     resumeQinfo: String!
     rqposts(
-        industry: String
+        rqindustry: String
         price: String
         orderBy: String
         tags: String
@@ -44,7 +44,7 @@ type rqPost{
     id: ID!
     price: Int
     position: String
-    industry: rqIndustry
+    rqindustry: rqIndustry
     description: String!
     reviewerID: String!
     createdAt: DateTime!
