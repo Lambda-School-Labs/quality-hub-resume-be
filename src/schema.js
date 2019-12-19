@@ -13,7 +13,7 @@ extend type Query{
     ): [rqPost!]!
     rqpost(id: String!): rqPost!
     rqpostByCoach(coach_id: String!): rqPost!
-    rqindustries: [Industry!]
+    rqindustries: [rqIndustry!]
     rqindustry(name: String!): [rqPost!]!
 }
 
@@ -44,7 +44,7 @@ type rqPost{
     id: ID!
     price: Int
     position: String
-    industry: Industry
+    industry: rqIndustry
     description: String!
     reviewerID: String!
     createdAt: DateTime!
@@ -53,7 +53,7 @@ type rqPost{
     isPublished: Boolean!
     desc_lc: String
     company_lc: String
-    tags: [Tag]!
+    tags: [rqTag]!
     coach: User
     ratingId: ID!
 }
@@ -76,13 +76,13 @@ type Job{
     dateCompleted: DateTime!
 }
 
-type Industry{
+type rqIndustry{
     id: ID!
     name: String!
     rqposts: [rqPost]!
 }
 
-type Tag{
+type rqTag{
     id: ID!
     name: String!
     rqposts: [rqPost]!
