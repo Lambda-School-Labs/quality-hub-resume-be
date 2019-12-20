@@ -13,11 +13,10 @@ extend type Query{
 type Mutation{
 
     createResumeListing(
-        price: Int 
+        price: Int
         position: String
         industry: String
         description: String
-        reviewerID: String
         createdAt: DateTime
         updatedAt: DateTime
         company: String
@@ -43,7 +42,7 @@ type ReviewerListing {
     position: String
     industry: String
     description: String!
-    reviewerID: String!
+    reviewer: User!
     createdAt: DateTime!
     updatedAt: DateTime!
     company: String

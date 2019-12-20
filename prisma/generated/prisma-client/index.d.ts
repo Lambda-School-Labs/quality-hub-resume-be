@@ -187,8 +187,8 @@ export type ReviewerListingOrderByInput =
   | "industry_DESC"
   | "description_ASC"
   | "description_DESC"
-  | "reviewerID_ASC"
-  | "reviewerID_DESC"
+  | "reviewer_ASC"
+  | "reviewer_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -204,7 +204,7 @@ export interface ReviewerListingCreateInput {
   position?: Maybe<String>;
   industry?: Maybe<String>;
   description: String;
-  reviewerID: String;
+  reviewer: String;
   company?: Maybe<String>;
   isPublished?: Maybe<Boolean>;
 }
@@ -229,7 +229,7 @@ export interface ReviewerListingUpdateManyMutationInput {
   position?: Maybe<String>;
   industry?: Maybe<String>;
   description?: Maybe<String>;
-  reviewerID?: Maybe<String>;
+  reviewer?: Maybe<String>;
   company?: Maybe<String>;
   isPublished?: Maybe<Boolean>;
 }
@@ -299,20 +299,20 @@ export interface ReviewerListingWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
-  reviewerID?: Maybe<String>;
-  reviewerID_not?: Maybe<String>;
-  reviewerID_in?: Maybe<String[] | String>;
-  reviewerID_not_in?: Maybe<String[] | String>;
-  reviewerID_lt?: Maybe<String>;
-  reviewerID_lte?: Maybe<String>;
-  reviewerID_gt?: Maybe<String>;
-  reviewerID_gte?: Maybe<String>;
-  reviewerID_contains?: Maybe<String>;
-  reviewerID_not_contains?: Maybe<String>;
-  reviewerID_starts_with?: Maybe<String>;
-  reviewerID_not_starts_with?: Maybe<String>;
-  reviewerID_ends_with?: Maybe<String>;
-  reviewerID_not_ends_with?: Maybe<String>;
+  reviewer?: Maybe<String>;
+  reviewer_not?: Maybe<String>;
+  reviewer_in?: Maybe<String[] | String>;
+  reviewer_not_in?: Maybe<String[] | String>;
+  reviewer_lt?: Maybe<String>;
+  reviewer_lte?: Maybe<String>;
+  reviewer_gt?: Maybe<String>;
+  reviewer_gte?: Maybe<String>;
+  reviewer_contains?: Maybe<String>;
+  reviewer_not_contains?: Maybe<String>;
+  reviewer_starts_with?: Maybe<String>;
+  reviewer_not_starts_with?: Maybe<String>;
+  reviewer_ends_with?: Maybe<String>;
+  reviewer_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -352,7 +352,7 @@ export interface ReviewerListingWhereInput {
 
 export type ReviewerListingWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  reviewerID?: Maybe<String>;
+  reviewer?: Maybe<String>;
 }>;
 
 export interface ResumeReviewCreateInput {
@@ -469,7 +469,7 @@ export interface ReviewerListingUpdateInput {
   position?: Maybe<String>;
   industry?: Maybe<String>;
   description?: Maybe<String>;
-  reviewerID?: Maybe<String>;
+  reviewer?: Maybe<String>;
   company?: Maybe<String>;
   isPublished?: Maybe<Boolean>;
 }
@@ -541,7 +541,7 @@ export interface ReviewerListingPreviousValues {
   position?: String;
   industry?: String;
   description: String;
-  reviewerID: String;
+  reviewer: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   company?: String;
@@ -556,7 +556,7 @@ export interface ReviewerListingPreviousValuesPromise
   position: () => Promise<String>;
   industry: () => Promise<String>;
   description: () => Promise<String>;
-  reviewerID: () => Promise<String>;
+  reviewer: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   company: () => Promise<String>;
@@ -571,7 +571,7 @@ export interface ReviewerListingPreviousValuesSubscription
   position: () => Promise<AsyncIterator<String>>;
   industry: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
-  reviewerID: () => Promise<AsyncIterator<String>>;
+  reviewer: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   company: () => Promise<AsyncIterator<String>>;
@@ -705,7 +705,7 @@ export interface ReviewerListing {
   position?: String;
   industry?: String;
   description: String;
-  reviewerID: String;
+  reviewer: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   company?: String;
@@ -720,7 +720,7 @@ export interface ReviewerListingPromise
   position: () => Promise<String>;
   industry: () => Promise<String>;
   description: () => Promise<String>;
-  reviewerID: () => Promise<String>;
+  reviewer: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   company: () => Promise<String>;
@@ -735,7 +735,7 @@ export interface ReviewerListingSubscription
   position: () => Promise<AsyncIterator<String>>;
   industry: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
-  reviewerID: () => Promise<AsyncIterator<String>>;
+  reviewer: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   company: () => Promise<AsyncIterator<String>>;
@@ -750,7 +750,7 @@ export interface ReviewerListingNullablePromise
   position: () => Promise<String>;
   industry: () => Promise<String>;
   description: () => Promise<String>;
-  reviewerID: () => Promise<String>;
+  reviewer: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   company: () => Promise<String>;

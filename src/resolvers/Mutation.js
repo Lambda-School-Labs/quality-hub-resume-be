@@ -6,7 +6,7 @@ async function createResumeListing(parent, args, context){
         position: args.position,
         industry: args.industry,
         description: args.description,
-        reviewerID: args.reviewerID,
+        reviewer: args.reviewer,
         createdAt: args.createdAt,
         updatedAt: args.updatedAt,
         company: args.company,

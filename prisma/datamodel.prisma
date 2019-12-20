@@ -5,7 +5,7 @@ type ReviewerListing {
     position: String
     industry: String
     description: String!
-    reviewerID: String! @unique
+    reviewer: String! @unique
     createdAt: DateTime! @createdAt
     updatedAt: DateTime! @updatedAt
     company: String
