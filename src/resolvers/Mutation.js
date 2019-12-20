@@ -1,7 +1,7 @@
 
 
-async function createListing(parent, args, context){
-    return context.prisma.createListing({
+async function createResumeListing(parent, args, context){
+    return context.prisma.createResumeListing({
         price: args.price,
         position: args.position,
         industry: args.industry,
@@ -14,8 +14,8 @@ async function createListing(parent, args, context){
     })
 }
 
-async function createReview(parent, args, context){
-    return context.prisma.createReview({
+async function createResumeReview(parent, args, context){
+    return context.prisma.createResumeReview({
         name: args.name,
         isPending: args.isPending,
         isAccepted: args.isAccepted,
@@ -28,6 +28,6 @@ async function createReview(parent, args, context){
 }
 
 module.exports = {
-    createListing,
-    createReview,
+    createResumeListing,
+    createResumeReview,
 }

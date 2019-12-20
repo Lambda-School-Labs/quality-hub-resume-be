@@ -12,7 +12,7 @@ extend type Query{
 
 type Mutation{
 
-    createListing(
+    createResumeListing(
         price: Int 
         position: String
         industry: String
@@ -24,7 +24,7 @@ type Mutation{
         isPublished: Boolean
     ): ReviewerListing!
 
-    createReview(
+    createResumeReview(
         name: String
         isPending: Boolean
         isAccepted: Boolean
