@@ -3,19 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateIndustry {
+/* GraphQL */ `type AggregateResumeReview {
   count: Int!
 }
 
-type AggregateJob {
-  count: Int!
-}
-
-type AggregatePost {
-  count: Int!
-}
-
-type AggregateTag {
+type AggregateReviewerListing {
   count: Int!
 }
 
@@ -25,141 +17,53 @@ type BatchPayload {
 
 scalar DateTime
 
-type Industry {
+scalar Long
+
+type Mutation {
+  createResumeReview(data: ResumeReviewCreateInput!): ResumeReview!
+  updateResumeReview(data: ResumeReviewUpdateInput!, where: ResumeReviewWhereUniqueInput!): ResumeReview
+  updateManyResumeReviews(data: ResumeReviewUpdateManyMutationInput!, where: ResumeReviewWhereInput): BatchPayload!
+  upsertResumeReview(where: ResumeReviewWhereUniqueInput!, create: ResumeReviewCreateInput!, update: ResumeReviewUpdateInput!): ResumeReview!
+  deleteResumeReview(where: ResumeReviewWhereUniqueInput!): ResumeReview
+  deleteManyResumeReviews(where: ResumeReviewWhereInput): BatchPayload!
+  createReviewerListing(data: ReviewerListingCreateInput!): ReviewerListing!
+  updateReviewerListing(data: ReviewerListingUpdateInput!, where: ReviewerListingWhereUniqueInput!): ReviewerListing
+  updateManyReviewerListings(data: ReviewerListingUpdateManyMutationInput!, where: ReviewerListingWhereInput): BatchPayload!
+  upsertReviewerListing(where: ReviewerListingWhereUniqueInput!, create: ReviewerListingCreateInput!, update: ReviewerListingUpdateInput!): ReviewerListing!
+  deleteReviewerListing(where: ReviewerListingWhereUniqueInput!): ReviewerListing
+  deleteManyReviewerListings(where: ReviewerListingWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  resumeReview(where: ResumeReviewWhereUniqueInput!): ResumeReview
+  resumeReviews(where: ResumeReviewWhereInput, orderBy: ResumeReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ResumeReview]!
+  resumeReviewsConnection(where: ResumeReviewWhereInput, orderBy: ResumeReviewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ResumeReviewConnection!
+  reviewerListing(where: ReviewerListingWhereUniqueInput!): ReviewerListing
+  reviewerListings(where: ReviewerListingWhereInput, orderBy: ReviewerListingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ReviewerListing]!
+  reviewerListingsConnection(where: ReviewerListingWhereInput, orderBy: ReviewerListingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReviewerListingConnection!
+  node(id: ID!): Node
+}
+
+type ResumeReview {
   id: ID!
   name: String!
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
-}
-
-type IndustryConnection {
-  pageInfo: PageInfo!
-  edges: [IndustryEdge]!
-  aggregate: AggregateIndustry!
-}
-
-input IndustryCreateInput {
-  id: ID
-  name: String!
-  posts: PostCreateManyWithoutIndustryInput
-}
-
-input IndustryCreateOneWithoutPostsInput {
-  create: IndustryCreateWithoutPostsInput
-  connect: IndustryWhereUniqueInput
-}
-
-input IndustryCreateWithoutPostsInput {
-  id: ID
-  name: String!
-}
-
-type IndustryEdge {
-  node: Industry!
-  cursor: String!
-}
-
-enum IndustryOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-}
-
-type IndustryPreviousValues {
-  id: ID!
-  name: String!
-}
-
-type IndustrySubscriptionPayload {
-  mutation: MutationType!
-  node: Industry
-  updatedFields: [String!]
-  previousValues: IndustryPreviousValues
-}
-
-input IndustrySubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: IndustryWhereInput
-  AND: [IndustrySubscriptionWhereInput!]
-  OR: [IndustrySubscriptionWhereInput!]
-  NOT: [IndustrySubscriptionWhereInput!]
-}
-
-input IndustryUpdateInput {
-  name: String
-  posts: PostUpdateManyWithoutIndustryInput
-}
-
-input IndustryUpdateManyMutationInput {
-  name: String
-}
-
-input IndustryUpdateOneWithoutPostsInput {
-  create: IndustryCreateWithoutPostsInput
-  update: IndustryUpdateWithoutPostsDataInput
-  upsert: IndustryUpsertWithoutPostsInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: IndustryWhereUniqueInput
-}
-
-input IndustryUpdateWithoutPostsDataInput {
-  name: String
-}
-
-input IndustryUpsertWithoutPostsInput {
-  update: IndustryUpdateWithoutPostsDataInput!
-  create: IndustryCreateWithoutPostsInput!
-}
-
-input IndustryWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
-  AND: [IndustryWhereInput!]
-  OR: [IndustryWhereInput!]
-  NOT: [IndustryWhereInput!]
-}
-
-input IndustryWhereUniqueInput {
-  id: ID
-}
-
-type Job {
-  id: ID!
-  name: String!
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
@@ -169,16 +73,15 @@ type Job {
   dateCompleted: DateTime!
 }
 
-type JobConnection {
+type ResumeReviewConnection {
   pageInfo: PageInfo!
-  edges: [JobEdge]!
-  aggregate: AggregateJob!
+  edges: [ResumeReviewEdge]!
+  aggregate: AggregateResumeReview!
 }
 
-input JobCreateInput {
+input ResumeReviewCreateInput {
   id: ID
   name: String!
-  posts: PostCreateManyInput
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
@@ -188,12 +91,12 @@ input JobCreateInput {
   dateCompleted: DateTime!
 }
 
-type JobEdge {
-  node: Job!
+type ResumeReviewEdge {
+  node: ResumeReview!
   cursor: String!
 }
 
-enum JobOrderByInput {
+enum ResumeReviewOrderByInput {
   id_ASC
   id_DESC
   name_ASC
@@ -214,7 +117,7 @@ enum JobOrderByInput {
   dateCompleted_DESC
 }
 
-type JobPreviousValues {
+type ResumeReviewPreviousValues {
   id: ID!
   name: String!
   isPending: Boolean!
@@ -226,37 +129,25 @@ type JobPreviousValues {
   dateCompleted: DateTime!
 }
 
-type JobSubscriptionPayload {
+type ResumeReviewSubscriptionPayload {
   mutation: MutationType!
-  node: Job
+  node: ResumeReview
   updatedFields: [String!]
-  previousValues: JobPreviousValues
+  previousValues: ResumeReviewPreviousValues
 }
 
-input JobSubscriptionWhereInput {
+input ResumeReviewSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: JobWhereInput
-  AND: [JobSubscriptionWhereInput!]
-  OR: [JobSubscriptionWhereInput!]
-  NOT: [JobSubscriptionWhereInput!]
+  node: ResumeReviewWhereInput
+  AND: [ResumeReviewSubscriptionWhereInput!]
+  OR: [ResumeReviewSubscriptionWhereInput!]
+  NOT: [ResumeReviewSubscriptionWhereInput!]
 }
 
-input JobUpdateInput {
-  name: String
-  posts: PostUpdateManyInput
-  isPending: Boolean
-  isAccepted: Boolean
-  isDenied: Boolean
-  isComplete: Boolean
-  dateRequested: DateTime
-  dateAccepted: DateTime
-  dateCompleted: DateTime
-}
-
-input JobUpdateManyMutationInput {
+input ResumeReviewUpdateInput {
   name: String
   isPending: Boolean
   isAccepted: Boolean
@@ -267,7 +158,18 @@ input JobUpdateManyMutationInput {
   dateCompleted: DateTime
 }
 
-input JobWhereInput {
+input ResumeReviewUpdateManyMutationInput {
+  name: String
+  isPending: Boolean
+  isAccepted: Boolean
+  isDenied: Boolean
+  isComplete: Boolean
+  dateRequested: DateTime
+  dateAccepted: DateTime
+  dateCompleted: DateTime
+}
+
+input ResumeReviewWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -296,9 +198,6 @@ input JobWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
   isPending: Boolean
   isPending_not: Boolean
   isAccepted: Boolean
@@ -331,158 +230,59 @@ input JobWhereInput {
   dateCompleted_lte: DateTime
   dateCompleted_gt: DateTime
   dateCompleted_gte: DateTime
-  AND: [JobWhereInput!]
-  OR: [JobWhereInput!]
-  NOT: [JobWhereInput!]
+  AND: [ResumeReviewWhereInput!]
+  OR: [ResumeReviewWhereInput!]
+  NOT: [ResumeReviewWhereInput!]
 }
 
-input JobWhereUniqueInput {
+input ResumeReviewWhereUniqueInput {
   id: ID
 }
 
-scalar Long
-
-type Mutation {
-  createIndustry(data: IndustryCreateInput!): Industry!
-  updateIndustry(data: IndustryUpdateInput!, where: IndustryWhereUniqueInput!): Industry
-  updateManyIndustries(data: IndustryUpdateManyMutationInput!, where: IndustryWhereInput): BatchPayload!
-  upsertIndustry(where: IndustryWhereUniqueInput!, create: IndustryCreateInput!, update: IndustryUpdateInput!): Industry!
-  deleteIndustry(where: IndustryWhereUniqueInput!): Industry
-  deleteManyIndustries(where: IndustryWhereInput): BatchPayload!
-  createJob(data: JobCreateInput!): Job!
-  updateJob(data: JobUpdateInput!, where: JobWhereUniqueInput!): Job
-  updateManyJobs(data: JobUpdateManyMutationInput!, where: JobWhereInput): BatchPayload!
-  upsertJob(where: JobWhereUniqueInput!, create: JobCreateInput!, update: JobUpdateInput!): Job!
-  deleteJob(where: JobWhereUniqueInput!): Job
-  deleteManyJobs(where: JobWhereInput): BatchPayload!
-  createPost(data: PostCreateInput!): Post!
-  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
-  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
-  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
-  deletePost(where: PostWhereUniqueInput!): Post
-  deleteManyPosts(where: PostWhereInput): BatchPayload!
-  createTag(data: TagCreateInput!): Tag!
-  updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
-  updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
-  upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
-  deleteTag(where: TagWhereUniqueInput!): Tag
-  deleteManyTags(where: TagWhereInput): BatchPayload!
-}
-
-enum MutationType {
-  CREATED
-  UPDATED
-  DELETED
-}
-
-interface Node {
-  id: ID!
-}
-
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-
-type Post {
+type ReviewerListing {
   id: ID!
   price: Int
   position: String
-  industry: Industry
+  industry: String
   description: String!
   reviewerID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   company: String
   isPublished: Boolean!
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
-  ratingId: ID!
 }
 
-type PostConnection {
+type ReviewerListingConnection {
   pageInfo: PageInfo!
-  edges: [PostEdge]!
-  aggregate: AggregatePost!
+  edges: [ReviewerListingEdge]!
+  aggregate: AggregateReviewerListing!
 }
 
-input PostCreateInput {
+input ReviewerListingCreateInput {
   id: ID
   price: Int
   position: String
-  industry: IndustryCreateOneWithoutPostsInput
+  industry: String
   description: String!
   reviewerID: String!
   company: String
   isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  tags: TagCreateManyWithoutPostsInput
-  ratingId: ID!
 }
 
-input PostCreateManyInput {
-  create: [PostCreateInput!]
-  connect: [PostWhereUniqueInput!]
-}
-
-input PostCreateManyWithoutIndustryInput {
-  create: [PostCreateWithoutIndustryInput!]
-  connect: [PostWhereUniqueInput!]
-}
-
-input PostCreateManyWithoutTagsInput {
-  create: [PostCreateWithoutTagsInput!]
-  connect: [PostWhereUniqueInput!]
-}
-
-input PostCreateWithoutIndustryInput {
-  id: ID
-  price: Int
-  position: String
-  description: String!
-  reviewerID: String!
-  company: String
-  isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  tags: TagCreateManyWithoutPostsInput
-  ratingId: ID!
-}
-
-input PostCreateWithoutTagsInput {
-  id: ID
-  price: Int
-  position: String
-  industry: IndustryCreateOneWithoutPostsInput
-  description: String!
-  reviewerID: String!
-  company: String
-  isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  ratingId: ID!
-}
-
-type PostEdge {
-  node: Post!
+type ReviewerListingEdge {
+  node: ReviewerListing!
   cursor: String!
 }
 
-enum PostOrderByInput {
+enum ReviewerListingOrderByInput {
   id_ASC
   id_DESC
   price_ASC
   price_DESC
   position_ASC
   position_DESC
+  industry_ASC
+  industry_DESC
   description_ASC
   description_DESC
   reviewerID_ASC
@@ -495,367 +295,60 @@ enum PostOrderByInput {
   company_DESC
   isPublished_ASC
   isPublished_DESC
-  position_lc_ASC
-  position_lc_DESC
-  desc_lc_ASC
-  desc_lc_DESC
-  company_lc_ASC
-  company_lc_DESC
-  ratingId_ASC
-  ratingId_DESC
 }
 
-type PostPreviousValues {
+type ReviewerListingPreviousValues {
   id: ID!
   price: Int
   position: String
+  industry: String
   description: String!
   reviewerID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   company: String
   isPublished: Boolean!
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  ratingId: ID!
 }
 
-input PostScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  price: Int
-  price_not: Int
-  price_in: [Int!]
-  price_not_in: [Int!]
-  price_lt: Int
-  price_lte: Int
-  price_gt: Int
-  price_gte: Int
-  position: String
-  position_not: String
-  position_in: [String!]
-  position_not_in: [String!]
-  position_lt: String
-  position_lte: String
-  position_gt: String
-  position_gte: String
-  position_contains: String
-  position_not_contains: String
-  position_starts_with: String
-  position_not_starts_with: String
-  position_ends_with: String
-  position_not_ends_with: String
-  description: String
-  description_not: String
-  description_in: [String!]
-  description_not_in: [String!]
-  description_lt: String
-  description_lte: String
-  description_gt: String
-  description_gte: String
-  description_contains: String
-  description_not_contains: String
-  description_starts_with: String
-  description_not_starts_with: String
-  description_ends_with: String
-  description_not_ends_with: String
-  reviewerID: String
-  reviewerID_not: String
-  reviewerID_in: [String!]
-  reviewerID_not_in: [String!]
-  reviewerID_lt: String
-  reviewerID_lte: String
-  reviewerID_gt: String
-  reviewerID_gte: String
-  reviewerID_contains: String
-  reviewerID_not_contains: String
-  reviewerID_starts_with: String
-  reviewerID_not_starts_with: String
-  reviewerID_ends_with: String
-  reviewerID_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  company: String
-  company_not: String
-  company_in: [String!]
-  company_not_in: [String!]
-  company_lt: String
-  company_lte: String
-  company_gt: String
-  company_gte: String
-  company_contains: String
-  company_not_contains: String
-  company_starts_with: String
-  company_not_starts_with: String
-  company_ends_with: String
-  company_not_ends_with: String
-  isPublished: Boolean
-  isPublished_not: Boolean
-  position_lc: String
-  position_lc_not: String
-  position_lc_in: [String!]
-  position_lc_not_in: [String!]
-  position_lc_lt: String
-  position_lc_lte: String
-  position_lc_gt: String
-  position_lc_gte: String
-  position_lc_contains: String
-  position_lc_not_contains: String
-  position_lc_starts_with: String
-  position_lc_not_starts_with: String
-  position_lc_ends_with: String
-  position_lc_not_ends_with: String
-  desc_lc: String
-  desc_lc_not: String
-  desc_lc_in: [String!]
-  desc_lc_not_in: [String!]
-  desc_lc_lt: String
-  desc_lc_lte: String
-  desc_lc_gt: String
-  desc_lc_gte: String
-  desc_lc_contains: String
-  desc_lc_not_contains: String
-  desc_lc_starts_with: String
-  desc_lc_not_starts_with: String
-  desc_lc_ends_with: String
-  desc_lc_not_ends_with: String
-  company_lc: String
-  company_lc_not: String
-  company_lc_in: [String!]
-  company_lc_not_in: [String!]
-  company_lc_lt: String
-  company_lc_lte: String
-  company_lc_gt: String
-  company_lc_gte: String
-  company_lc_contains: String
-  company_lc_not_contains: String
-  company_lc_starts_with: String
-  company_lc_not_starts_with: String
-  company_lc_ends_with: String
-  company_lc_not_ends_with: String
-  ratingId: ID
-  ratingId_not: ID
-  ratingId_in: [ID!]
-  ratingId_not_in: [ID!]
-  ratingId_lt: ID
-  ratingId_lte: ID
-  ratingId_gt: ID
-  ratingId_gte: ID
-  ratingId_contains: ID
-  ratingId_not_contains: ID
-  ratingId_starts_with: ID
-  ratingId_not_starts_with: ID
-  ratingId_ends_with: ID
-  ratingId_not_ends_with: ID
-  AND: [PostScalarWhereInput!]
-  OR: [PostScalarWhereInput!]
-  NOT: [PostScalarWhereInput!]
-}
-
-type PostSubscriptionPayload {
+type ReviewerListingSubscriptionPayload {
   mutation: MutationType!
-  node: Post
+  node: ReviewerListing
   updatedFields: [String!]
-  previousValues: PostPreviousValues
+  previousValues: ReviewerListingPreviousValues
 }
 
-input PostSubscriptionWhereInput {
+input ReviewerListingSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: PostWhereInput
-  AND: [PostSubscriptionWhereInput!]
-  OR: [PostSubscriptionWhereInput!]
-  NOT: [PostSubscriptionWhereInput!]
+  node: ReviewerListingWhereInput
+  AND: [ReviewerListingSubscriptionWhereInput!]
+  OR: [ReviewerListingSubscriptionWhereInput!]
+  NOT: [ReviewerListingSubscriptionWhereInput!]
 }
 
-input PostUpdateDataInput {
+input ReviewerListingUpdateInput {
   price: Int
   position: String
-  industry: IndustryUpdateOneWithoutPostsInput
+  industry: String
   description: String
   reviewerID: String
   company: String
   isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  tags: TagUpdateManyWithoutPostsInput
-  ratingId: ID
 }
 
-input PostUpdateInput {
+input ReviewerListingUpdateManyMutationInput {
   price: Int
   position: String
-  industry: IndustryUpdateOneWithoutPostsInput
+  industry: String
   description: String
   reviewerID: String
   company: String
   isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  tags: TagUpdateManyWithoutPostsInput
-  ratingId: ID
 }
 
-input PostUpdateManyDataInput {
-  price: Int
-  position: String
-  description: String
-  reviewerID: String
-  company: String
-  isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  ratingId: ID
-}
-
-input PostUpdateManyInput {
-  create: [PostCreateInput!]
-  update: [PostUpdateWithWhereUniqueNestedInput!]
-  upsert: [PostUpsertWithWhereUniqueNestedInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  deleteMany: [PostScalarWhereInput!]
-  updateMany: [PostUpdateManyWithWhereNestedInput!]
-}
-
-input PostUpdateManyMutationInput {
-  price: Int
-  position: String
-  description: String
-  reviewerID: String
-  company: String
-  isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  ratingId: ID
-}
-
-input PostUpdateManyWithoutIndustryInput {
-  create: [PostCreateWithoutIndustryInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutIndustryInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutIndustryInput!]
-  deleteMany: [PostScalarWhereInput!]
-  updateMany: [PostUpdateManyWithWhereNestedInput!]
-}
-
-input PostUpdateManyWithoutTagsInput {
-  create: [PostCreateWithoutTagsInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutTagsInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutTagsInput!]
-  deleteMany: [PostScalarWhereInput!]
-  updateMany: [PostUpdateManyWithWhereNestedInput!]
-}
-
-input PostUpdateManyWithWhereNestedInput {
-  where: PostScalarWhereInput!
-  data: PostUpdateManyDataInput!
-}
-
-input PostUpdateWithoutIndustryDataInput {
-  price: Int
-  position: String
-  description: String
-  reviewerID: String
-  company: String
-  isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  tags: TagUpdateManyWithoutPostsInput
-  ratingId: ID
-}
-
-input PostUpdateWithoutTagsDataInput {
-  price: Int
-  position: String
-  industry: IndustryUpdateOneWithoutPostsInput
-  description: String
-  reviewerID: String
-  company: String
-  isPublished: Boolean
-  position_lc: String
-  desc_lc: String
-  company_lc: String
-  ratingId: ID
-}
-
-input PostUpdateWithWhereUniqueNestedInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateDataInput!
-}
-
-input PostUpdateWithWhereUniqueWithoutIndustryInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateWithoutIndustryDataInput!
-}
-
-input PostUpdateWithWhereUniqueWithoutTagsInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateWithoutTagsDataInput!
-}
-
-input PostUpsertWithWhereUniqueNestedInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateDataInput!
-  create: PostCreateInput!
-}
-
-input PostUpsertWithWhereUniqueWithoutIndustryInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateWithoutIndustryDataInput!
-  create: PostCreateWithoutIndustryInput!
-}
-
-input PostUpsertWithWhereUniqueWithoutTagsInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateWithoutTagsDataInput!
-  create: PostCreateWithoutTagsInput!
-}
-
-input PostWhereInput {
+input ReviewerListingWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -892,7 +385,20 @@ input PostWhereInput {
   position_not_starts_with: String
   position_ends_with: String
   position_not_ends_with: String
-  industry: IndustryWhereInput
+  industry: String
+  industry_not: String
+  industry_in: [String!]
+  industry_not_in: [String!]
+  industry_lt: String
+  industry_lte: String
+  industry_gt: String
+  industry_gte: String
+  industry_contains: String
+  industry_not_contains: String
+  industry_starts_with: String
+  industry_not_starts_with: String
+  industry_ends_with: String
+  industry_not_ends_with: String
   description: String
   description_not: String
   description_in: [String!]
@@ -953,279 +459,19 @@ input PostWhereInput {
   company_not_ends_with: String
   isPublished: Boolean
   isPublished_not: Boolean
-  position_lc: String
-  position_lc_not: String
-  position_lc_in: [String!]
-  position_lc_not_in: [String!]
-  position_lc_lt: String
-  position_lc_lte: String
-  position_lc_gt: String
-  position_lc_gte: String
-  position_lc_contains: String
-  position_lc_not_contains: String
-  position_lc_starts_with: String
-  position_lc_not_starts_with: String
-  position_lc_ends_with: String
-  position_lc_not_ends_with: String
-  desc_lc: String
-  desc_lc_not: String
-  desc_lc_in: [String!]
-  desc_lc_not_in: [String!]
-  desc_lc_lt: String
-  desc_lc_lte: String
-  desc_lc_gt: String
-  desc_lc_gte: String
-  desc_lc_contains: String
-  desc_lc_not_contains: String
-  desc_lc_starts_with: String
-  desc_lc_not_starts_with: String
-  desc_lc_ends_with: String
-  desc_lc_not_ends_with: String
-  company_lc: String
-  company_lc_not: String
-  company_lc_in: [String!]
-  company_lc_not_in: [String!]
-  company_lc_lt: String
-  company_lc_lte: String
-  company_lc_gt: String
-  company_lc_gte: String
-  company_lc_contains: String
-  company_lc_not_contains: String
-  company_lc_starts_with: String
-  company_lc_not_starts_with: String
-  company_lc_ends_with: String
-  company_lc_not_ends_with: String
-  tags_every: TagWhereInput
-  tags_some: TagWhereInput
-  tags_none: TagWhereInput
-  ratingId: ID
-  ratingId_not: ID
-  ratingId_in: [ID!]
-  ratingId_not_in: [ID!]
-  ratingId_lt: ID
-  ratingId_lte: ID
-  ratingId_gt: ID
-  ratingId_gte: ID
-  ratingId_contains: ID
-  ratingId_not_contains: ID
-  ratingId_starts_with: ID
-  ratingId_not_starts_with: ID
-  ratingId_ends_with: ID
-  ratingId_not_ends_with: ID
-  AND: [PostWhereInput!]
-  OR: [PostWhereInput!]
-  NOT: [PostWhereInput!]
+  AND: [ReviewerListingWhereInput!]
+  OR: [ReviewerListingWhereInput!]
+  NOT: [ReviewerListingWhereInput!]
 }
 
-input PostWhereUniqueInput {
+input ReviewerListingWhereUniqueInput {
   id: ID
   reviewerID: String
-}
-
-type Query {
-  industry(where: IndustryWhereUniqueInput!): Industry
-  industries(where: IndustryWhereInput, orderBy: IndustryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Industry]!
-  industriesConnection(where: IndustryWhereInput, orderBy: IndustryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): IndustryConnection!
-  job(where: JobWhereUniqueInput!): Job
-  jobs(where: JobWhereInput, orderBy: JobOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Job]!
-  jobsConnection(where: JobWhereInput, orderBy: JobOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobConnection!
-  post(where: PostWhereUniqueInput!): Post
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
-  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  tag(where: TagWhereUniqueInput!): Tag
-  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
-  tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
-  node(id: ID!): Node
 }
 
 type Subscription {
-  industry(where: IndustrySubscriptionWhereInput): IndustrySubscriptionPayload
-  job(where: JobSubscriptionWhereInput): JobSubscriptionPayload
-  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
-  tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
-}
-
-type Tag {
-  id: ID!
-  name: String!
-  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
-}
-
-type TagConnection {
-  pageInfo: PageInfo!
-  edges: [TagEdge]!
-  aggregate: AggregateTag!
-}
-
-input TagCreateInput {
-  id: ID
-  name: String!
-  posts: PostCreateManyWithoutTagsInput
-}
-
-input TagCreateManyWithoutPostsInput {
-  create: [TagCreateWithoutPostsInput!]
-  connect: [TagWhereUniqueInput!]
-}
-
-input TagCreateWithoutPostsInput {
-  id: ID
-  name: String!
-}
-
-type TagEdge {
-  node: Tag!
-  cursor: String!
-}
-
-enum TagOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-}
-
-type TagPreviousValues {
-  id: ID!
-  name: String!
-}
-
-input TagScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [TagScalarWhereInput!]
-  OR: [TagScalarWhereInput!]
-  NOT: [TagScalarWhereInput!]
-}
-
-type TagSubscriptionPayload {
-  mutation: MutationType!
-  node: Tag
-  updatedFields: [String!]
-  previousValues: TagPreviousValues
-}
-
-input TagSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: TagWhereInput
-  AND: [TagSubscriptionWhereInput!]
-  OR: [TagSubscriptionWhereInput!]
-  NOT: [TagSubscriptionWhereInput!]
-}
-
-input TagUpdateInput {
-  name: String
-  posts: PostUpdateManyWithoutTagsInput
-}
-
-input TagUpdateManyDataInput {
-  name: String
-}
-
-input TagUpdateManyMutationInput {
-  name: String
-}
-
-input TagUpdateManyWithoutPostsInput {
-  create: [TagCreateWithoutPostsInput!]
-  delete: [TagWhereUniqueInput!]
-  connect: [TagWhereUniqueInput!]
-  set: [TagWhereUniqueInput!]
-  disconnect: [TagWhereUniqueInput!]
-  update: [TagUpdateWithWhereUniqueWithoutPostsInput!]
-  upsert: [TagUpsertWithWhereUniqueWithoutPostsInput!]
-  deleteMany: [TagScalarWhereInput!]
-  updateMany: [TagUpdateManyWithWhereNestedInput!]
-}
-
-input TagUpdateManyWithWhereNestedInput {
-  where: TagScalarWhereInput!
-  data: TagUpdateManyDataInput!
-}
-
-input TagUpdateWithoutPostsDataInput {
-  name: String
-}
-
-input TagUpdateWithWhereUniqueWithoutPostsInput {
-  where: TagWhereUniqueInput!
-  data: TagUpdateWithoutPostsDataInput!
-}
-
-input TagUpsertWithWhereUniqueWithoutPostsInput {
-  where: TagWhereUniqueInput!
-  update: TagUpdateWithoutPostsDataInput!
-  create: TagCreateWithoutPostsInput!
-}
-
-input TagWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  posts_every: PostWhereInput
-  posts_some: PostWhereInput
-  posts_none: PostWhereInput
-  AND: [TagWhereInput!]
-  OR: [TagWhereInput!]
-  NOT: [TagWhereInput!]
-}
-
-input TagWhereUniqueInput {
-  id: ID
+  resumeReview(where: ResumeReviewSubscriptionWhereInput): ResumeReviewSubscriptionPayload
+  reviewerListing(where: ReviewerListingSubscriptionWhereInput): ReviewerListingSubscriptionPayload
 }
 `
       }

@@ -2,71 +2,57 @@ const { gql } = require('apollo-server')
 
 const typeDefs = gql`
 
+scalar DateTime
+
 extend type Query{
     resumeQinfo: String!
-    rqposts(
-        rqindustry: String
-        price: String
-        orderBy: String
-        tags: String
-        ids: [String]
-    ): [rqPost!]!
-    rqpost(id: String!): rqPost!
-    rqpostByCoach(coach_id: String!): rqPost!
-    rqindustries: [rqIndustry!]
-    rqindustry(name: String!): [rqPost!]!
+    reviewerListing(id: String!): ReviewerListing!
+    resumeReview(id: String!): ResumeReview!
 }
 
 type Mutation{
-    createrqPost(
-        price: Int!
-        position: String!
-        industryName: String!
-        description: String!
-    ): rqPost!
 
-    deleterqPost(id: String!): rqPost!
-
-    updaterqPost(
-        id: String!
-        price: Int
+    createListing(
+        price: Int 
         position: String
-        industryName: String
+        industry: String
         description: String
-    ): rqPost!
+        reviewerID: String
+        createdAt: DateTime
+        updatedAt: DateTime
+        company: String
+        isPublished: Boolean
+    ): ReviewerListing!
 
-    removeTagFromrqPost(id: ID!, tagID: String): rqPost!
+    createReview(
+        name: String
+        isPending: Boolean
+        isAccepted: Boolean
+        isDenied: Boolean
+        isComplete: Boolean
+        dateRequested: DateTime
+        dateAccepted: DateTime
+        dateCompleted: DateTime
+    ): ResumeReview!
+
 }
 
-scalar DateTime
-
-type rqPost{
+type ReviewerListing {
     id: ID!
     price: Int
     position: String
-    rqindustry: rqIndustry
+    industry: String
     description: String!
     reviewerID: String!
     createdAt: DateTime!
     updatedAt: DateTime!
     company: String
     isPublished: Boolean!
-    desc_lc: String
-    company_lc: String
-    tags: [rqTag]!
-    coach: User
-    ratingId: ID!
 }
 
-extend type User @key(fields: "id"){
-    id: ID! @external
-    rqpost: rqPost
-}
-
-type Job{
+type ResumeReview {
     id: ID!
     name: String!
-    rqposts: [rqPost]!
     isPending: Boolean!
     isAccepted: Boolean!
     isDenied: Boolean!
@@ -76,17 +62,12 @@ type Job{
     dateCompleted: DateTime!
 }
 
-type rqIndustry{
-    id: ID!
-    name: String!
-    rqposts: [rqPost]!
+extend type User @key(fields: "id"){
+    id: ID! @external
+    reviewerListing: ReviewerListing
+    resumeReview: ResumeReview
 }
 
-type rqTag{
-    id: ID!
-    name: String!
-    rqposts: [rqPost]!
-}
 `
 
 module.exports = typeDefs

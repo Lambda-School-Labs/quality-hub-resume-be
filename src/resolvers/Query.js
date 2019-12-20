@@ -1,28 +1,18 @@
 
-module.exports = {
-    resumeQinfo,
-    rqpost,
-    rqposts,
-    rqindustry,
-    rqindustries,
-}
-
 function resumeQinfo(){
     return "Welcome to ResumeQ"
 }
 
-function rqpost(_parent, args, context){
-    return context.prisma.rqpost({ id: args.id })
+function reviewerListing(_parent, args, context){
+    return context.prisma.reviewerListing({ id: args.id })
 }
 
-function rqposts(_parent, args, context){
-    return context.prisma.rqposts({ rqposts: args.rqposts })
+function resumeReview(_parent, args, context){
+    return context.prisma.resumeReview({ id: args.id })
 }
 
-function rqindustry(_parents, args, context){
-    return context.prisma.rqindustry({ where: { rqindustry: { name: args.name }}})
-}
-
-function rqindustries(_parent, args, context){
-    return context.prisma.rqindustries()
+module.exports = {
+    resumeQinfo,
+    reviewerListing,
+    resumeReview,
 }

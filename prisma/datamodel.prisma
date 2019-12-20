@@ -1,26 +1,20 @@
 
-type Post {
+type ReviewerListing {
     id: ID! @id
     price: Int
     position: String
-    industry: Industry
+    industry: String
     description: String!
     reviewerID: String! @unique
     createdAt: DateTime! @createdAt
     updatedAt: DateTime! @updatedAt
     company: String
     isPublished: Boolean! @default(value: true)
-    position_lc: String
-    desc_lc: String
-    company_lc: String
-    tags: [Tag]!
-    ratingId: ID!
 }
 
-type Job {
+type ResumeReview {
     id: ID! @id
     name: String!
-    posts: [Post]!
     isPending: Boolean!
     isAccepted: Boolean!
     isDenied: Boolean!
@@ -28,18 +22,6 @@ type Job {
     dateRequested: DateTime!
     dateAccepted: DateTime!
     dateCompleted: DateTime!
-}
-
-type Industry{
-    id: ID! @id
-    name: String!
-    posts: [Post]!
-}
-
-type Tag{
-    id: ID! @id
-    name: String!
-    posts: [Post]!
 }
 
 
