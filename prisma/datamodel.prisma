@@ -5,7 +5,6 @@ type ReviewerListing {
     position: String
     industry: String
     description: String!
-    reviewer: String! @unique
     createdAt: DateTime! @createdAt
     updatedAt: DateTime! @updatedAt
     company: String
@@ -19,9 +18,9 @@ type ResumeReview {
     isAccepted: Boolean!
     isDenied: Boolean!
     isComplete: Boolean!
-    dateRequested: DateTime!
-    dateAccepted: DateTime!
-    dateCompleted: DateTime!
+    dateRequested: DateTime
+    dateAccepted: DateTime
+    dateCompleted: DateTime
 }
 
 

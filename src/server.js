@@ -4,8 +4,8 @@ const { prisma } = require('../prisma/generated/prisma-client')
 const { buildFederatedSchema } = require('@apollo/federation')
 
 const typeDefs = require('./schema')
-const Mutation = require('./resolvers/Mutation')
 const Query = require('./resolvers/Query')
+const Mutation = require('./resolvers/Mutation')
 const ReviewerListing = require('./resolvers/ReviewerListing')
 const ResumeReview = require('./resolvers/ResumeReview')
 

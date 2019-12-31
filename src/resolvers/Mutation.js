@@ -1,7 +1,9 @@
 
+// USE THIS TO CONNECT WITH USER AFTER INITIAL SET UP
+// const { getUserId } = require('../utils')
 
-async function createResumeListing(parent, args, context){
-    return context.prisma.createResumeListing({
+async function createReviewerListing(parent, args, context){
+    return context.prisma.createReviewerListing({
         price: args.price,
         position: args.position,
         industry: args.industry,
@@ -14,7 +16,11 @@ async function createResumeListing(parent, args, context){
     })
 }
 
-async function createResumeReview(parent, args, context){
+function deleteReviewerListing(parent, args, context){
+    return context.prisma.deleteReviewerListing({ id: args.id })
+}
+
+function createResumeReview(parent, args, context){
     return context.prisma.createResumeReview({
         name: args.name,
         isPending: args.isPending,
@@ -27,7 +33,14 @@ async function createResumeReview(parent, args, context){
     })
 }
 
-module.exports = {
-    createResumeListing,
-    createResumeReview,
+function deleteResumeReview(parent, args, context){
+    return context.prisma.deleteResumeReview({ id: args.id })
 }
+
+module.exports = {
+    createReviewerListing,
+    deleteReviewerListing,
+    createResumeReview,
+    deleteResumeReview,
+  }
+

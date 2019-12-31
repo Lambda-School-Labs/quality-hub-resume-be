@@ -68,9 +68,9 @@ type ResumeReview {
   isAccepted: Boolean!
   isDenied: Boolean!
   isComplete: Boolean!
-  dateRequested: DateTime!
-  dateAccepted: DateTime!
-  dateCompleted: DateTime!
+  dateRequested: DateTime
+  dateAccepted: DateTime
+  dateCompleted: DateTime
 }
 
 type ResumeReviewConnection {
@@ -86,9 +86,9 @@ input ResumeReviewCreateInput {
   isAccepted: Boolean!
   isDenied: Boolean!
   isComplete: Boolean!
-  dateRequested: DateTime!
-  dateAccepted: DateTime!
-  dateCompleted: DateTime!
+  dateRequested: DateTime
+  dateAccepted: DateTime
+  dateCompleted: DateTime
 }
 
 type ResumeReviewEdge {
@@ -124,9 +124,9 @@ type ResumeReviewPreviousValues {
   isAccepted: Boolean!
   isDenied: Boolean!
   isComplete: Boolean!
-  dateRequested: DateTime!
-  dateAccepted: DateTime!
-  dateCompleted: DateTime!
+  dateRequested: DateTime
+  dateAccepted: DateTime
+  dateCompleted: DateTime
 }
 
 type ResumeReviewSubscriptionPayload {
@@ -245,7 +245,6 @@ type ReviewerListing {
   position: String
   industry: String
   description: String!
-  reviewer: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   company: String
@@ -264,7 +263,6 @@ input ReviewerListingCreateInput {
   position: String
   industry: String
   description: String!
-  reviewer: String!
   company: String
   isPublished: Boolean
 }
@@ -285,8 +283,6 @@ enum ReviewerListingOrderByInput {
   industry_DESC
   description_ASC
   description_DESC
-  reviewer_ASC
-  reviewer_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -303,7 +299,6 @@ type ReviewerListingPreviousValues {
   position: String
   industry: String
   description: String!
-  reviewer: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   company: String
@@ -333,7 +328,6 @@ input ReviewerListingUpdateInput {
   position: String
   industry: String
   description: String
-  reviewer: String
   company: String
   isPublished: Boolean
 }
@@ -343,7 +337,6 @@ input ReviewerListingUpdateManyMutationInput {
   position: String
   industry: String
   description: String
-  reviewer: String
   company: String
   isPublished: Boolean
 }
@@ -413,20 +406,6 @@ input ReviewerListingWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
-  reviewer: String
-  reviewer_not: String
-  reviewer_in: [String!]
-  reviewer_not_in: [String!]
-  reviewer_lt: String
-  reviewer_lte: String
-  reviewer_gt: String
-  reviewer_gte: String
-  reviewer_contains: String
-  reviewer_not_contains: String
-  reviewer_starts_with: String
-  reviewer_not_starts_with: String
-  reviewer_ends_with: String
-  reviewer_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -466,7 +445,6 @@ input ReviewerListingWhereInput {
 
 input ReviewerListingWhereUniqueInput {
   id: ID
-  reviewer: String
 }
 
 type Subscription {

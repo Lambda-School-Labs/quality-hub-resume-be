@@ -7,12 +7,14 @@ scalar DateTime
 extend type Query{
     resumeQinfo: String!
     reviewerListing(id: String!): ReviewerListing!
+    reviewerListings: [ReviewerListing]!
     resumeReview(id: String!): ResumeReview!
+    resumeReviews: [ResumeReview]!
 }
 
 type Mutation{
 
-    createResumeListing(
+    createReviewerListing(
         price: Int
         position: String
         industry: String
@@ -21,6 +23,10 @@ type Mutation{
         updatedAt: DateTime
         company: String
         isPublished: Boolean
+    ): ReviewerListing!
+
+    deleteReviewerListing(
+        id: String!
     ): ReviewerListing!
 
     createResumeReview(
@@ -32,6 +38,10 @@ type Mutation{
         dateRequested: DateTime
         dateAccepted: DateTime
         dateCompleted: DateTime
+    ): ResumeReview!
+
+    deleteResumeReview(
+        id: String!
     ): ResumeReview!
 
 }
