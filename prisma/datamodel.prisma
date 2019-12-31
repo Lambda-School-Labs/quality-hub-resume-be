@@ -1,0 +1,26 @@
+
+type ReviewerListing {
+    id: ID! @id
+    price: Int
+    position: String
+    industry: String
+    description: String!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    company: String
+    isPublished: Boolean! @default(value: true)
+}
+
+type ResumeReview {
+    id: ID! @id
+    name: String!
+    isPending: Boolean!
+    isAccepted: Boolean!
+    isDenied: Boolean!
+    isComplete: Boolean!
+    dateRequested: DateTime
+    dateAccepted: DateTime
+    dateCompleted: DateTime
+}
+
+
