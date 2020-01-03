@@ -43,7 +43,6 @@ type Mutation{
     deleteResumeReview(
         id: String!
     ): ResumeReview!
-
 }
 
 type ReviewerListing {
