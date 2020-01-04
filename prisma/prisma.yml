@@ -1,19 +1,19 @@
-
-# Specifies the HTTP endpoint of your Prisma API.
-endpoint: https://resumeqbe-8689136a16.herokuapp.com/quality-hub-resume-be/dev
+#Updating this file to deploy prisma according to specific environment variables (testing, development, etc.)
+# To execute a prisma deployment, use the command `prisma deploy -e ../config/[environment_file].env
+# servicename / stagename
+endpoint: ${env:PRISMA_ENDPOINT}
 
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma
 
 # Specifies the language and directory for the generated Prisma client.
 generate:
-    - generator: javascript-client
-      output: ./generated/prisma-client
+  - generator: javascript-client
+    output: ./generated/prisma-client
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:
-    post-deploy:
-        - prisma generate
-
+  post-deploy:
+    - prisma generate
 # seed:
 #   import: seed.graphql
