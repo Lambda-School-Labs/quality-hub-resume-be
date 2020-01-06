@@ -8,6 +8,10 @@
     "server": "nodemon src/index.js",
     "start": "node src/index.js"
   },
+  "jest": {
+    "globalSetup": "./tests/config/globalSetup.js",
+    "globalTeardown": "./tests/config/globalTeardown.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lambda-School-Labs/quality-hub-resume-be.git"
