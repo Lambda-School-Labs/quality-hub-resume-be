@@ -1,9 +1,12 @@
 
 // USE THIS TO CONNECT WITH USER AFTER INITIAL SET UP
-// const { getUserId } = require('../utils')
+//1 const { getUserId } = require('../utils')
 
 // MUTATION CREATE REVIEWER LISTING "POST"
 async function createReviewerListing(parent, args, context){
+
+    //2 const reviewerID = getUserId(context)
+
     return context.prisma.createReviewerListing({
         price: args.price,
         position: args.position,
@@ -14,6 +17,7 @@ async function createReviewerListing(parent, args, context){
         updatedAt: args.updatedAt,
         company: args.company,
         isPublished: args.isPublished,
+        // reviewerID: { connect: { id: args.reviewerID } }
     })
 }
 
