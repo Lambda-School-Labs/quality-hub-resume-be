@@ -63,6 +63,7 @@ type Query {
 
 type ResumeReview {
   id: ID!
+  coachID: String!
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -83,6 +84,7 @@ type ResumeReviewConnection {
 
 input ResumeReviewCreateInput {
   id: ID
+  coachID: String!
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -101,6 +103,8 @@ type ResumeReviewEdge {
 enum ResumeReviewOrderByInput {
   id_ASC
   id_DESC
+  coachID_ASC
+  coachID_DESC
   name_ASC
   name_DESC
   isPending_ASC
@@ -125,6 +129,7 @@ enum ResumeReviewOrderByInput {
 
 type ResumeReviewPreviousValues {
   id: ID!
+  coachID: String!
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -156,6 +161,7 @@ input ResumeReviewSubscriptionWhereInput {
 }
 
 input ResumeReviewUpdateInput {
+  coachID: String
   name: String
   isPending: Boolean
   isAccepted: Boolean
@@ -167,6 +173,7 @@ input ResumeReviewUpdateInput {
 }
 
 input ResumeReviewUpdateManyMutationInput {
+  coachID: String
   name: String
   isPending: Boolean
   isAccepted: Boolean
@@ -192,6 +199,20 @@ input ResumeReviewWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  coachID: String
+  coachID_not: String
+  coachID_in: [String!]
+  coachID_not_in: [String!]
+  coachID_lt: String
+  coachID_lte: String
+  coachID_gt: String
+  coachID_gte: String
+  coachID_contains: String
+  coachID_not_contains: String
+  coachID_starts_with: String
+  coachID_not_starts_with: String
+  coachID_ends_with: String
+  coachID_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -261,10 +282,12 @@ input ResumeReviewWhereInput {
 
 input ResumeReviewWhereUniqueInput {
   id: ID
+  coachID: String
 }
 
 type ReviewerListing {
   id: ID!
+  coachID: String!
   price: Int
   position: String
   industry: String
@@ -283,6 +306,7 @@ type ReviewerListingConnection {
 
 input ReviewerListingCreateInput {
   id: ID
+  coachID: String!
   price: Int
   position: String
   industry: String
@@ -299,6 +323,8 @@ type ReviewerListingEdge {
 enum ReviewerListingOrderByInput {
   id_ASC
   id_DESC
+  coachID_ASC
+  coachID_DESC
   price_ASC
   price_DESC
   position_ASC
@@ -319,6 +345,7 @@ enum ReviewerListingOrderByInput {
 
 type ReviewerListingPreviousValues {
   id: ID!
+  coachID: String!
   price: Int
   position: String
   industry: String
@@ -348,6 +375,7 @@ input ReviewerListingSubscriptionWhereInput {
 }
 
 input ReviewerListingUpdateInput {
+  coachID: String
   price: Int
   position: String
   industry: String
@@ -357,6 +385,7 @@ input ReviewerListingUpdateInput {
 }
 
 input ReviewerListingUpdateManyMutationInput {
+  coachID: String
   price: Int
   position: String
   industry: String
@@ -380,6 +409,20 @@ input ReviewerListingWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  coachID: String
+  coachID_not: String
+  coachID_in: [String!]
+  coachID_not_in: [String!]
+  coachID_lt: String
+  coachID_lte: String
+  coachID_gt: String
+  coachID_gte: String
+  coachID_contains: String
+  coachID_not_contains: String
+  coachID_starts_with: String
+  coachID_not_starts_with: String
+  coachID_ends_with: String
+  coachID_not_ends_with: String
   price: Int
   price_not: Int
   price_in: [Int!]
@@ -469,6 +512,7 @@ input ReviewerListingWhereInput {
 
 input ReviewerListingWhereUniqueInput {
   id: ID
+  coachID: String
 }
 
 type Subscription {

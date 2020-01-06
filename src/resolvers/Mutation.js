@@ -5,7 +5,7 @@ const { getUserId } = require('../utils')
 // MUTATION CREATE REVIEWER LISTING "POST"
 async function createReviewerListing(parent, args, context){
 
-    const reviewerID = getUserId(context)
+    const coachID = getUserId(context)
 
     // const reviewerExists = await context.prisma.exists.createReviewerListing({
         
@@ -21,7 +21,7 @@ async function createReviewerListing(parent, args, context){
         updatedAt: args.updatedAt,
         company: args.company,
         isPublished: args.isPublished,
-        reviewerID: { connect: { id: args.reviewerID } }
+        coachID,
     })
 }
 
