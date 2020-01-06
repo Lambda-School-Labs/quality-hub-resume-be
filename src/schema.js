@@ -25,6 +25,18 @@ type Mutation{
         isPublished: Boolean
     ): ReviewerListing!
 
+    updateReviewerListing(
+        id: String!
+        price: Int
+        position: String
+        industry: String
+        description: String
+        createdAt: DateTime
+        updatedAt: DateTime
+        company: String
+        isPublished: Boolean
+    ): ReviewerListing!
+
     deleteReviewerListing(
         id: String!
     ): ReviewerListing!
@@ -35,6 +47,22 @@ type Mutation{
         isAccepted: Boolean
         isDenied: Boolean
         isComplete: Boolean
+        createdAt: DateTime
+        updatedAt: DateTime
+        dateRequested: DateTime
+        dateAccepted: DateTime
+        dateCompleted: DateTime
+    ): ResumeReview!
+
+    updateResumeReview(
+        id: String!
+        name: String
+        isPending: Boolean
+        isAccepted: Boolean
+        isDenied: Boolean
+        isComplete: Boolean
+        createdAt: DateTime
+        updatedAt: DateTime
         dateRequested: DateTime
         dateAccepted: DateTime
         dateCompleted: DateTime
@@ -65,9 +93,11 @@ type ResumeReview {
     isAccepted: Boolean!
     isDenied: Boolean!
     isComplete: Boolean!
-    dateRequested: DateTime!
-    dateAccepted: DateTime!
-    dateCompleted: DateTime!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    dateRequested: DateTime
+    dateAccepted: DateTime
+    dateCompleted: DateTime
 }
 
 extend type User @key(fields: "id"){

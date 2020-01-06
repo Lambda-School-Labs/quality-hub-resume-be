@@ -18,6 +18,8 @@ type ResumeReview {
     isAccepted: Boolean!
     isDenied: Boolean!
     isComplete: Boolean!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
     dateRequested: DateTime
     dateAccepted: DateTime
     dateCompleted: DateTime

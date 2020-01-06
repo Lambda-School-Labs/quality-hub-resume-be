@@ -167,6 +167,10 @@ export type ResumeReviewOrderByInput =
   | "isDenied_DESC"
   | "isComplete_ASC"
   | "isComplete_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
   | "dateRequested_ASC"
   | "dateRequested_DESC"
   | "dateAccepted_ASC"
@@ -385,6 +389,22 @@ export interface ResumeReviewWhereInput {
   isDenied_not?: Maybe<Boolean>;
   isComplete?: Maybe<Boolean>;
   isComplete_not?: Maybe<Boolean>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
   dateRequested?: Maybe<DateTimeInput>;
   dateRequested_not?: Maybe<DateTimeInput>;
   dateRequested_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -624,6 +644,8 @@ export interface ResumeReviewPreviousValues {
   isAccepted: Boolean;
   isDenied: Boolean;
   isComplete: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
   dateRequested?: DateTimeOutput;
   dateAccepted?: DateTimeOutput;
   dateCompleted?: DateTimeOutput;
@@ -638,6 +660,8 @@ export interface ResumeReviewPreviousValuesPromise
   isAccepted: () => Promise<Boolean>;
   isDenied: () => Promise<Boolean>;
   isComplete: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
   dateRequested: () => Promise<DateTimeOutput>;
   dateAccepted: () => Promise<DateTimeOutput>;
   dateCompleted: () => Promise<DateTimeOutput>;
@@ -652,6 +676,8 @@ export interface ResumeReviewPreviousValuesSubscription
   isAccepted: () => Promise<AsyncIterator<Boolean>>;
   isDenied: () => Promise<AsyncIterator<Boolean>>;
   isComplete: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateRequested: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -737,6 +763,8 @@ export interface ResumeReview {
   isAccepted: Boolean;
   isDenied: Boolean;
   isComplete: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
   dateRequested?: DateTimeOutput;
   dateAccepted?: DateTimeOutput;
   dateCompleted?: DateTimeOutput;
@@ -751,6 +779,8 @@ export interface ResumeReviewPromise
   isAccepted: () => Promise<Boolean>;
   isDenied: () => Promise<Boolean>;
   isComplete: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
   dateRequested: () => Promise<DateTimeOutput>;
   dateAccepted: () => Promise<DateTimeOutput>;
   dateCompleted: () => Promise<DateTimeOutput>;
@@ -765,6 +795,8 @@ export interface ResumeReviewSubscription
   isAccepted: () => Promise<AsyncIterator<Boolean>>;
   isDenied: () => Promise<AsyncIterator<Boolean>>;
   isComplete: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateRequested: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -779,6 +811,8 @@ export interface ResumeReviewNullablePromise
   isAccepted: () => Promise<Boolean>;
   isDenied: () => Promise<Boolean>;
   isComplete: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
   dateRequested: () => Promise<DateTimeOutput>;
   dateAccepted: () => Promise<DateTimeOutput>;
   dateCompleted: () => Promise<DateTimeOutput>;
