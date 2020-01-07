@@ -60,8 +60,7 @@ async function updateReviewerListing(perent, args, context){
 function deleteReviewerListing(parent, args, context){
     const coachID = getUserId(context)
     return context.prisma.deleteReviewerListing({ 
-        id: args.id, 
-        coachID, 
+        id: coachID,
     })
 }
 
