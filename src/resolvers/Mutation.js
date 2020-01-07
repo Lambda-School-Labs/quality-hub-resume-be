@@ -45,17 +45,6 @@ async function updateReviewerListing(perent, args, context){
     })
 }
 
-// async function deletePost(_parent, _args, context) {
-// 	const id = getUserId(context);
-// 	let foundPostTags = await context.prisma
-// 		.post({ coachID: id })
-// 		.tags()
-// 		.id();
-// 	updatedPost = await context.prisma.deletePost({ coachID: id });
-// 	deleteDisconnectedTags(context, foundPostTags);
-// 	return updatedPost;
-// }
-
 // MUTATION DELETE REVIEWER LISTING by ID
 function deleteReviewerListing(parent, args, context){
     const id = getUserId(context)
@@ -108,9 +97,9 @@ async function updateResumeReview(perent, args, context){
 
 // MUTATION DELETE RESUME REVIEW by ID
 function deleteResumeReview(parent, args, context){
+    const id = getUserId(context)
     return context.prisma.deleteResumeReview({ 
-        id: args.id,
-        coachID,
+       coachID: id,
     })
 }
 
