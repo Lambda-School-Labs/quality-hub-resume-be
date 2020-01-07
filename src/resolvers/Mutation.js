@@ -24,8 +24,6 @@ async function createReviewerListing(parent, args, context){
 // MUTATION UPDATE REVIEWER LISTING "PUT"
 async function updateReviewerListing(perent, args, context){
 
-    const coachID = getUserId(context)
-
     return context.prisma.updateReviewerListing({
         where: {
             id: args.id
@@ -40,7 +38,6 @@ async function updateReviewerListing(perent, args, context){
             updatedAt: args.updatedAt,
             company: args.company,
             isPublished: args.isPublished,
-            coachID,
         }
     })
 }

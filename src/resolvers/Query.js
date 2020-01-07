@@ -24,7 +24,6 @@ function resumeReviews(_parent, args, context) {
 }
 
 
-
 module.exports = {
     resumeQinfo,
     reviewerListing,

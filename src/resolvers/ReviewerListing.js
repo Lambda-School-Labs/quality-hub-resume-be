@@ -1,7 +1,7 @@
 
-// function coach(reviewerListing) {
-//     return { __typename: 'User', id: reviewerListing.coachID }
-// }
+function coach(reviewerListing) {
+    return { __typename: 'User', id: reviewerListing.coachID }
+}
 
 function __resolveReference(reviewerListing, context) {
     return context.prisma.reviewerListing({ id: reviewerListing.id })
@@ -10,4 +10,5 @@ function __resolveReference(reviewerListing, context) {
 
 module.exports = {
     __resolveReference,
+    coach,
 }
