@@ -23,13 +23,6 @@ function resumeReviews(_parent, args, context) {
     return context.prisma.resumeReviews()
 }
 
-function coach(reviewerListing) {
-    return { __typename: 'User', id: reviewerListing.coachID }
-}
-
-function __resolveReference(reviewerListing, context) {
-    return context.prisma.reviewerListing({ id: reviewerListing.id })
-}
 
 
 module.exports = {
@@ -38,6 +31,4 @@ module.exports = {
     reviewerListings,
     resumeReview,
     resumeReviews,
-    __resolveReference,
-    coach
 }
