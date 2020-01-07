@@ -10,8 +10,9 @@ function coach(reviewerListing) {
 }
 
 function __resolveReference(reviewerListing, context) {
-    return context.prisma.reviewerListing({ id: reviewerListing.id })
+    return context.prisma.reviewerListing({ id: reviewerListing.id });
 }
+
 
 module.exports = {
     __resolveListing,
