@@ -9,7 +9,6 @@ function __resolveReference(reviewerListing, context) {
 
 
 module.exports = {
-    __resolveListing,
     __resolveReference,
     coach
 }
