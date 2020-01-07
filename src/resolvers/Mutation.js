@@ -47,9 +47,12 @@ async function updateReviewerListing(perent, args, context){
 
 // MUTATION DELETE REVIEWER LISTING by ID
 function deleteReviewerListing(parent, args, context){
-    return context.prisma.deleteReviewerListing({ id: args.id })
+    const coachID = getUserId(context)
+    return context.prisma.deleteReviewerListing({ 
+        id: args.id, 
+        coachID, 
+    })
 }
-
 
 ///
 // MUTATION CREATE RESUME REVIEW "POST"
@@ -73,6 +76,8 @@ function createResumeReview(parent, args, context){
 // MUTATION UPDATE RESUME REVIEW "PUT"
 async function updateResumeReview(perent, args, context){
 
+    const coachID = getUserId(context)
+
     return context.prisma.updateResumeReview({
         where: {
             id: args.id
@@ -86,13 +91,17 @@ async function updateResumeReview(perent, args, context){
             dateRequested: args.dateRequested,
             dateAccepted: args.dateAccepted,
             dateCompleted: args.dateCompleted,
+            coachID,
         }
     })
 }
 
 // MUTATION DELETE RESUME REVIEW by ID
 function deleteResumeReview(parent, args, context){
-    return context.prisma.deleteResumeReview({ id: args.id })
+    return context.prisma.deleteResumeReview({ 
+        id: args.id,
+        coachID,
+    })
 }
 
 module.exports = {
