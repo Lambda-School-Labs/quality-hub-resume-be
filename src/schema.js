@@ -65,7 +65,6 @@ type Mutation{
 }
 type ReviewerListing {
     id: ID!
-
     price: Int
     position: String
     industry: String
@@ -75,7 +74,7 @@ type ReviewerListing {
     updatedAt: DateTime!
     company: String
     isPublished: Boolean!
-    creator: User!
+    coach: User!
 }
 type ResumeReview {
     id: ID!
