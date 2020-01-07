@@ -100,6 +100,7 @@ type ResumeReview {
     dateRequested: DateTime
     dateAccepted: DateTime
     dateCompleted: DateTime
+    coach: User!
 }
 
 extend type User @key(fields: "id"){
@@ -107,6 +108,7 @@ extend type User @key(fields: "id"){
     reviewerListing: ReviewerListing
     resumeReview: ResumeReview
 }
+
 `
 
 module.exports = typeDefs
