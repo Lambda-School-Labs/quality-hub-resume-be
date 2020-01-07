@@ -1,9 +1,9 @@
 
 
-function __resolveReview(resumeReview, context) {
+function __resolveReference(resumeReview, context) {
 	return context.prisma.resumeReview({ id: resumeReview.id })
 }
 
 module.exports = {
-    __resolveReview,
+    __resolveReference,
 }
