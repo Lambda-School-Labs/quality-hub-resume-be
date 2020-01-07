@@ -63,7 +63,7 @@ type Query {
 
 type ResumeReview {
   id: ID!
-  coachID: String!
+  coachID: String
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -84,7 +84,7 @@ type ResumeReviewConnection {
 
 input ResumeReviewCreateInput {
   id: ID
-  coachID: String!
+  coachID: String
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -129,7 +129,7 @@ enum ResumeReviewOrderByInput {
 
 type ResumeReviewPreviousValues {
   id: ID!
-  coachID: String!
+  coachID: String
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -287,7 +287,7 @@ input ResumeReviewWhereUniqueInput {
 
 type ReviewerListing {
   id: ID!
-  coachID: String!
+  coachID: String
   price: Int
   position: String
   industry: String
@@ -306,7 +306,7 @@ type ReviewerListingConnection {
 
 input ReviewerListingCreateInput {
   id: ID
-  coachID: String!
+  coachID: String
   price: Int
   position: String
   industry: String
@@ -345,7 +345,7 @@ enum ReviewerListingOrderByInput {
 
 type ReviewerListingPreviousValues {
   id: ID!
-  coachID: String!
+  coachID: String
   price: Int
   position: String
   industry: String

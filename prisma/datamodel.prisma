@@ -1,7 +1,7 @@
 
 type ReviewerListing {
     id: ID! @id
-    coachID: String! @unique
+    coachID: String @unique
     price: Int
     position: String
     industry: String
@@ -14,7 +14,7 @@ type ReviewerListing {
 
 type ResumeReview {
     id: ID! @id
-    coachID: String! @unique
+    coachID: String @unique
     name: String!
     isPending: Boolean!
     isAccepted: Boolean!

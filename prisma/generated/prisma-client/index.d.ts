@@ -206,7 +206,7 @@ export type ReviewerListingOrderByInput =
 
 export interface ReviewerListingCreateInput {
   id?: Maybe<ID_Input>;
-  coachID: String;
+  coachID?: Maybe<String>;
   price?: Maybe<Int>;
   position?: Maybe<String>;
   industry?: Maybe<String>;
@@ -365,7 +365,7 @@ export type ReviewerListingWhereUniqueInput = AtLeastOne<{
 
 export interface ResumeReviewCreateInput {
   id?: Maybe<ID_Input>;
-  coachID: String;
+  coachID?: Maybe<String>;
   name: String;
   isPending: Boolean;
   isAccepted: Boolean;
@@ -577,7 +577,7 @@ export interface ResumeReviewConnectionSubscription
 
 export interface ReviewerListingPreviousValues {
   id: ID_Output;
-  coachID: String;
+  coachID?: String;
   price?: Int;
   position?: String;
   industry?: String;
@@ -657,7 +657,7 @@ export interface AggregateReviewerListingSubscription
 
 export interface ResumeReview {
   id: ID_Output;
-  coachID: String;
+  coachID?: String;
   name: String;
   isPending: Boolean;
   isAccepted: Boolean;
@@ -767,7 +767,7 @@ export interface ResumeReviewEdgeSubscription
 
 export interface ReviewerListing {
   id: ID_Output;
-  coachID: String;
+  coachID?: String;
   price?: Int;
   position?: String;
   industry?: String;
@@ -825,7 +825,7 @@ export interface ReviewerListingNullablePromise
 
 export interface ResumeReviewPreviousValues {
   id: ID_Output;
-  coachID: String;
+  coachID?: String;
   name: String;
   isPending: Boolean;
   isAccepted: Boolean;

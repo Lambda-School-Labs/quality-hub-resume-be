@@ -75,7 +75,7 @@ type Mutation{
 
 type ReviewerListing {
     id: ID!
-    coachID: String!
+    # coachID: String!
     price: Int
     position: String
     industry: String
@@ -89,7 +89,7 @@ type ReviewerListing {
 
 type ResumeReview {
     id: ID!
-    coachID: String!
+    # coachID: String!
     name: String!
     isPending: Boolean!
     isAccepted: Boolean!
