@@ -58,9 +58,9 @@ async function updateReviewerListing(perent, args, context){
 
 // MUTATION DELETE REVIEWER LISTING by ID
 function deleteReviewerListing(parent, args, context){
-    const coachID = getUserId(context)
+    const id = getUserId(context)
     return context.prisma.deleteReviewerListing({ 
-        id: coachID,
+        coachID: id,
     })
 }
 
