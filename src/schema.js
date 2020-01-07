@@ -65,10 +65,7 @@ type Mutation{
 }
 type ReviewerListing {
     id: ID!
-<<<<<<< HEAD
     # coachID: String!
-=======
->>>>>>> b0a99391ca000ca6da038c7d89c615a57ff9dbeb
     price: Int
     position: String
     industry: String
