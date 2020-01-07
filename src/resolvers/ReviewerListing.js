@@ -1,10 +1,4 @@
 
-
-function __resolveListing(reviewerListing, context) {
-    return context.prisma.reviewerListing({ id: reviewerListing.id });
-}
-
-
 function coach(reviewerListing) {
     return { __typename: 'User', id: reviewerListing.coachID }
 }
