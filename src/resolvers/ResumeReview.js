@@ -5,7 +5,7 @@ function __resolveReference(resumeReview, context) {
 }
 
 function coach(resumeReview) {
-    return { __typename: 'User', id: resumeReview.coachID }
+    return { __typename: 'User', id: resumeReview.coach }
 }
 
 function seeker(resumeReview) {

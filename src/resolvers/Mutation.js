@@ -57,7 +57,7 @@ function deleteReviewerListing(parent, args, context){
 // MUTATION CREATE RESUME REVIEW "POST"
 function createResumeReview(parent, args, context){
 
-    const coachID = getUserId(context)
+    const seeker = getUserId(context)
 
     return context.prisma.createResumeReview({
         name: args.name,
@@ -68,7 +68,8 @@ function createResumeReview(parent, args, context){
         dateRequested: args.dateRequested,
         dateAccepted: args.dateAccepted,
         dateCompleted: args.dateCompleted,
-        coachID,
+        coach: args.coach,
+        seeker,
     })
 }
 
