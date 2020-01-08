@@ -53,6 +53,8 @@ function deleteReviewerListing(parent, args, context){
     })
 }
 
+
+
 ///
 // MUTATION CREATE RESUME REVIEW "POST"
 function createResumeReview(parent, args, context){
@@ -76,7 +78,7 @@ function createResumeReview(parent, args, context){
 // MUTATION UPDATE RESUME REVIEW "PUT"
 async function updateResumeReview(perent, args, context){
 
-    const coachID = getUserId(context)
+    const seeker = getUserId(context)
 
     return context.prisma.updateResumeReview({
         where: {
@@ -91,7 +93,7 @@ async function updateResumeReview(perent, args, context){
             dateRequested: args.dateRequested,
             dateAccepted: args.dateAccepted,
             dateCompleted: args.dateCompleted,
-            coachID,
+            seeker,
         }
     })
 }
