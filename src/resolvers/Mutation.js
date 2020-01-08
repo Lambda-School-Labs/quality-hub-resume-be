@@ -102,7 +102,7 @@ async function updateResumeReview(perent, args, context){
 function deleteResumeReview(parent, args, context){
     const id = getUserId(context)
     return context.prisma.deleteResumeReview({ 
-       coachID: id,
+       seeker: id,
     })
 }
 
