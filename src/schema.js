@@ -52,6 +52,7 @@ type Mutation{
         dateRequested: DateTime
         dateAccepted: DateTime
         dateCompleted: DateTime
+        coach: String!
     ): ResumeReview!
     
     updateResumeReview(
@@ -102,7 +103,6 @@ type ResumeReview {
     dateCompleted: DateTime
     coach: User!
 	seeker: User!
-    
 }
 
 extend type User @key(fields: "id"){
