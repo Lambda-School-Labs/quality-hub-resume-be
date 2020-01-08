@@ -63,7 +63,8 @@ type Query {
 
 type ResumeReview {
   id: ID!
-  coachID: String
+  coach: String!
+  seeker: String!
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -84,7 +85,8 @@ type ResumeReviewConnection {
 
 input ResumeReviewCreateInput {
   id: ID
-  coachID: String
+  coach: String!
+  seeker: String!
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -103,8 +105,10 @@ type ResumeReviewEdge {
 enum ResumeReviewOrderByInput {
   id_ASC
   id_DESC
-  coachID_ASC
-  coachID_DESC
+  coach_ASC
+  coach_DESC
+  seeker_ASC
+  seeker_DESC
   name_ASC
   name_DESC
   isPending_ASC
@@ -129,7 +133,8 @@ enum ResumeReviewOrderByInput {
 
 type ResumeReviewPreviousValues {
   id: ID!
-  coachID: String
+  coach: String!
+  seeker: String!
   name: String!
   isPending: Boolean!
   isAccepted: Boolean!
@@ -161,7 +166,8 @@ input ResumeReviewSubscriptionWhereInput {
 }
 
 input ResumeReviewUpdateInput {
-  coachID: String
+  coach: String
+  seeker: String
   name: String
   isPending: Boolean
   isAccepted: Boolean
@@ -173,7 +179,8 @@ input ResumeReviewUpdateInput {
 }
 
 input ResumeReviewUpdateManyMutationInput {
-  coachID: String
+  coach: String
+  seeker: String
   name: String
   isPending: Boolean
   isAccepted: Boolean
@@ -199,20 +206,34 @@ input ResumeReviewWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  coachID: String
-  coachID_not: String
-  coachID_in: [String!]
-  coachID_not_in: [String!]
-  coachID_lt: String
-  coachID_lte: String
-  coachID_gt: String
-  coachID_gte: String
-  coachID_contains: String
-  coachID_not_contains: String
-  coachID_starts_with: String
-  coachID_not_starts_with: String
-  coachID_ends_with: String
-  coachID_not_ends_with: String
+  coach: String
+  coach_not: String
+  coach_in: [String!]
+  coach_not_in: [String!]
+  coach_lt: String
+  coach_lte: String
+  coach_gt: String
+  coach_gte: String
+  coach_contains: String
+  coach_not_contains: String
+  coach_starts_with: String
+  coach_not_starts_with: String
+  coach_ends_with: String
+  coach_not_ends_with: String
+  seeker: String
+  seeker_not: String
+  seeker_in: [String!]
+  seeker_not_in: [String!]
+  seeker_lt: String
+  seeker_lte: String
+  seeker_gt: String
+  seeker_gte: String
+  seeker_contains: String
+  seeker_not_contains: String
+  seeker_starts_with: String
+  seeker_not_starts_with: String
+  seeker_ends_with: String
+  seeker_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -282,7 +303,6 @@ input ResumeReviewWhereInput {
 
 input ResumeReviewWhereUniqueInput {
   id: ID
-  coachID: String
 }
 
 type ReviewerListing {

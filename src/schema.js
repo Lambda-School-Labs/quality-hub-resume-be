@@ -101,12 +101,16 @@ type ResumeReview {
     dateAccepted: DateTime
     dateCompleted: DateTime
     coach: User!
+	seeker: User!
+    
 }
 
 extend type User @key(fields: "id"){
     id: ID! @external
     reviewerListing: ReviewerListing
     resumeReview: ResumeReview
+    coach_resume_reviews: [ResumeReview]
+	seeker_resume_reviews: [ResumeReview]
 }
 
 `

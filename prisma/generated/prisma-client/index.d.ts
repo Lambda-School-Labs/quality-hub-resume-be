@@ -157,8 +157,10 @@ export interface ClientConstructor<T> {
 export type ResumeReviewOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "coachID_ASC"
-  | "coachID_DESC"
+  | "coach_ASC"
+  | "coach_DESC"
+  | "seeker_ASC"
+  | "seeker_DESC"
   | "name_ASC"
   | "name_DESC"
   | "isPending_ASC"
@@ -216,7 +218,8 @@ export interface ReviewerListingCreateInput {
 }
 
 export interface ResumeReviewUpdateInput {
-  coachID?: Maybe<String>;
+  coach?: Maybe<String>;
+  seeker?: Maybe<String>;
   name?: Maybe<String>;
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
@@ -229,7 +232,6 @@ export interface ResumeReviewUpdateInput {
 
 export type ResumeReviewWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  coachID?: Maybe<String>;
 }>;
 
 export interface ReviewerListingUpdateManyMutationInput {
@@ -365,7 +367,8 @@ export type ReviewerListingWhereUniqueInput = AtLeastOne<{
 
 export interface ResumeReviewCreateInput {
   id?: Maybe<ID_Input>;
-  coachID?: Maybe<String>;
+  coach: String;
+  seeker: String;
   name: String;
   isPending: Boolean;
   isAccepted: Boolean;
@@ -391,20 +394,34 @@ export interface ResumeReviewWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  coachID?: Maybe<String>;
-  coachID_not?: Maybe<String>;
-  coachID_in?: Maybe<String[] | String>;
-  coachID_not_in?: Maybe<String[] | String>;
-  coachID_lt?: Maybe<String>;
-  coachID_lte?: Maybe<String>;
-  coachID_gt?: Maybe<String>;
-  coachID_gte?: Maybe<String>;
-  coachID_contains?: Maybe<String>;
-  coachID_not_contains?: Maybe<String>;
-  coachID_starts_with?: Maybe<String>;
-  coachID_not_starts_with?: Maybe<String>;
-  coachID_ends_with?: Maybe<String>;
-  coachID_not_ends_with?: Maybe<String>;
+  coach?: Maybe<String>;
+  coach_not?: Maybe<String>;
+  coach_in?: Maybe<String[] | String>;
+  coach_not_in?: Maybe<String[] | String>;
+  coach_lt?: Maybe<String>;
+  coach_lte?: Maybe<String>;
+  coach_gt?: Maybe<String>;
+  coach_gte?: Maybe<String>;
+  coach_contains?: Maybe<String>;
+  coach_not_contains?: Maybe<String>;
+  coach_starts_with?: Maybe<String>;
+  coach_not_starts_with?: Maybe<String>;
+  coach_ends_with?: Maybe<String>;
+  coach_not_ends_with?: Maybe<String>;
+  seeker?: Maybe<String>;
+  seeker_not?: Maybe<String>;
+  seeker_in?: Maybe<String[] | String>;
+  seeker_not_in?: Maybe<String[] | String>;
+  seeker_lt?: Maybe<String>;
+  seeker_lte?: Maybe<String>;
+  seeker_gt?: Maybe<String>;
+  seeker_gte?: Maybe<String>;
+  seeker_contains?: Maybe<String>;
+  seeker_not_contains?: Maybe<String>;
+  seeker_starts_with?: Maybe<String>;
+  seeker_not_starts_with?: Maybe<String>;
+  seeker_ends_with?: Maybe<String>;
+  seeker_not_ends_with?: Maybe<String>;
   name?: Maybe<String>;
   name_not?: Maybe<String>;
   name_in?: Maybe<String[] | String>;
@@ -473,7 +490,8 @@ export interface ResumeReviewWhereInput {
 }
 
 export interface ResumeReviewUpdateManyMutationInput {
-  coachID?: Maybe<String>;
+  coach?: Maybe<String>;
+  seeker?: Maybe<String>;
   name?: Maybe<String>;
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
@@ -655,72 +673,6 @@ export interface AggregateReviewerListingSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ResumeReview {
-  id: ID_Output;
-  coachID?: String;
-  name: String;
-  isPending: Boolean;
-  isAccepted: Boolean;
-  isDenied: Boolean;
-  isComplete: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  dateRequested?: DateTimeOutput;
-  dateAccepted?: DateTimeOutput;
-  dateCompleted?: DateTimeOutput;
-}
-
-export interface ResumeReviewPromise
-  extends Promise<ResumeReview>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  coachID: () => Promise<String>;
-  name: () => Promise<String>;
-  isPending: () => Promise<Boolean>;
-  isAccepted: () => Promise<Boolean>;
-  isDenied: () => Promise<Boolean>;
-  isComplete: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  dateRequested: () => Promise<DateTimeOutput>;
-  dateAccepted: () => Promise<DateTimeOutput>;
-  dateCompleted: () => Promise<DateTimeOutput>;
-}
-
-export interface ResumeReviewSubscription
-  extends Promise<AsyncIterator<ResumeReview>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  coachID: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-  isPending: () => Promise<AsyncIterator<Boolean>>;
-  isAccepted: () => Promise<AsyncIterator<Boolean>>;
-  isDenied: () => Promise<AsyncIterator<Boolean>>;
-  isComplete: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  dateRequested: () => Promise<AsyncIterator<DateTimeOutput>>;
-  dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
-  dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface ResumeReviewNullablePromise
-  extends Promise<ResumeReview | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  coachID: () => Promise<String>;
-  name: () => Promise<String>;
-  isPending: () => Promise<Boolean>;
-  isAccepted: () => Promise<Boolean>;
-  isDenied: () => Promise<Boolean>;
-  isComplete: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  dateRequested: () => Promise<DateTimeOutput>;
-  dateAccepted: () => Promise<DateTimeOutput>;
-  dateCompleted: () => Promise<DateTimeOutput>;
-}
-
 export interface ResumeReviewSubscriptionPayload {
   mutation: MutationType;
   node: ResumeReview;
@@ -744,6 +696,58 @@ export interface ResumeReviewSubscriptionPayloadSubscription
   node: <T = ResumeReviewSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
   previousValues: <T = ResumeReviewPreviousValuesSubscription>() => T;
+}
+
+export interface ResumeReviewPreviousValues {
+  id: ID_Output;
+  coach: String;
+  seeker: String;
+  name: String;
+  isPending: Boolean;
+  isAccepted: Boolean;
+  isDenied: Boolean;
+  isComplete: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  dateRequested?: DateTimeOutput;
+  dateAccepted?: DateTimeOutput;
+  dateCompleted?: DateTimeOutput;
+}
+
+export interface ResumeReviewPreviousValuesPromise
+  extends Promise<ResumeReviewPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  coach: () => Promise<String>;
+  seeker: () => Promise<String>;
+  name: () => Promise<String>;
+  isPending: () => Promise<Boolean>;
+  isAccepted: () => Promise<Boolean>;
+  isDenied: () => Promise<Boolean>;
+  isComplete: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  dateRequested: () => Promise<DateTimeOutput>;
+  dateAccepted: () => Promise<DateTimeOutput>;
+  dateCompleted: () => Promise<DateTimeOutput>;
+}
+
+export interface ResumeReviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<ResumeReviewPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  coach: () => Promise<AsyncIterator<String>>;
+  seeker: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
+  isPending: () => Promise<AsyncIterator<Boolean>>;
+  isAccepted: () => Promise<AsyncIterator<Boolean>>;
+  isDenied: () => Promise<AsyncIterator<Boolean>>;
+  isComplete: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  dateRequested: () => Promise<AsyncIterator<DateTimeOutput>>;
+  dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
+  dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ResumeReviewEdge {
@@ -823,9 +827,10 @@ export interface ReviewerListingNullablePromise
   isPublished: () => Promise<Boolean>;
 }
 
-export interface ResumeReviewPreviousValues {
+export interface ResumeReview {
   id: ID_Output;
-  coachID?: String;
+  coach: String;
+  seeker: String;
   name: String;
   isPending: Boolean;
   isAccepted: Boolean;
@@ -838,11 +843,12 @@ export interface ResumeReviewPreviousValues {
   dateCompleted?: DateTimeOutput;
 }
 
-export interface ResumeReviewPreviousValuesPromise
-  extends Promise<ResumeReviewPreviousValues>,
+export interface ResumeReviewPromise
+  extends Promise<ResumeReview>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  coachID: () => Promise<String>;
+  coach: () => Promise<String>;
+  seeker: () => Promise<String>;
   name: () => Promise<String>;
   isPending: () => Promise<Boolean>;
   isAccepted: () => Promise<Boolean>;
@@ -855,11 +861,12 @@ export interface ResumeReviewPreviousValuesPromise
   dateCompleted: () => Promise<DateTimeOutput>;
 }
 
-export interface ResumeReviewPreviousValuesSubscription
-  extends Promise<AsyncIterator<ResumeReviewPreviousValues>>,
+export interface ResumeReviewSubscription
+  extends Promise<AsyncIterator<ResumeReview>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  coachID: () => Promise<AsyncIterator<String>>;
+  coach: () => Promise<AsyncIterator<String>>;
+  seeker: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   isPending: () => Promise<AsyncIterator<Boolean>>;
   isAccepted: () => Promise<AsyncIterator<Boolean>>;
@@ -870,6 +877,24 @@ export interface ResumeReviewPreviousValuesSubscription
   dateRequested: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ResumeReviewNullablePromise
+  extends Promise<ResumeReview | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  coach: () => Promise<String>;
+  seeker: () => Promise<String>;
+  name: () => Promise<String>;
+  isPending: () => Promise<Boolean>;
+  isAccepted: () => Promise<Boolean>;
+  isDenied: () => Promise<Boolean>;
+  isComplete: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  dateRequested: () => Promise<DateTimeOutput>;
+  dateAccepted: () => Promise<DateTimeOutput>;
+  dateCompleted: () => Promise<DateTimeOutput>;
 }
 
 export interface ReviewerListingSubscriptionPayload {
@@ -970,11 +995,6 @@ export type Int = number;
 export type Long = string;
 
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
-
-/*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
@@ -984,6 +1004,11 @@ export type ID_Output = string;
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
+
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
 /**
  * Model Metadata

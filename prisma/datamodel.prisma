@@ -14,7 +14,8 @@ type ReviewerListing {
 
 type ResumeReview {
     id: ID! @id
-    coachID: String @unique
+    coach: String!
+    seeker: String!
     name: String!
     isPending: Boolean!
     isAccepted: Boolean!
