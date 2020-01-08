@@ -70,7 +70,7 @@ type Mutation{
     ): ResumeReview!
 
     deleteResumeReview(
-        id: String!
+        seeker: String!
     ): ResumeReview!
 
 }
