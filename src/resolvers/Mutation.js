@@ -100,9 +100,9 @@ async function updateResumeReview(perent, args, context){
 
 // MUTATION DELETE RESUME REVIEW by ID
 function deleteResumeReview(parent, args, context){
-    const id = getUserId(context)
+    const seeker = getUserId(context)
     return context.prisma.deleteResumeReview({ 
-       seeker: id,
+       id: seeker,
     })
 }
 
