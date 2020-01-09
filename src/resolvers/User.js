@@ -1,12 +1,12 @@
-function usersReviewerListing(reviewerListing) {
-  return { __typename: 'User', id: reviewerListing.coachID }
+function reviewerListing(parent, _args, context) {
+  return context.prisma.reviewerListing({ coachID: parent.id })
 }
 
-function __resolveReference(reviewerListing, context) {
-  return context.prisma.reviewerListing({ id: reviewerListing.id })
-}
+// function __resolveReference(reviewerListing, context) {
+//   return context.prisma.reviewerListing({ id: reviewerListing.id })
+// }
 
 module.exports = {
-  usersReviewerListing,
-  __resolveReference
+  reviewerListing,
+  // __resolveReference
 }
