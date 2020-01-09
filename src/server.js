@@ -8,12 +8,14 @@ const Query = require('./resolvers/Query')
 const Mutation = require('./resolvers/Mutation')
 const ReviewerListing = require('./resolvers/ReviewerListing')
 const ResumeReview = require('./resolvers/ResumeReview')
+const User = require('./resolvers/User')
 
 const resolvers = {
     Query,
     Mutation,
     ReviewerListing,
     ResumeReview,
+    User,
 }
 
 const server = new GraphQLServer({
@@ -24,7 +26,7 @@ const server = new GraphQLServer({
         },
     ]),
     context: request => {
-        return { ...request, prisma}
+        return { ...request, prisma }
     },
 })
 
