@@ -7,9 +7,11 @@ scalar DateTime
 extend type Query{
     resumeQinfo: String!
     reviewerListing(id: String!): ReviewerListing!
+    listingByReviewer: ReviewerListing
     reviewerListings: [ReviewerListing]!
     resumeReview(id: String!): ResumeReview!
     resumeReviews: [ResumeReview]!
+
 }
 
 type Mutation{
