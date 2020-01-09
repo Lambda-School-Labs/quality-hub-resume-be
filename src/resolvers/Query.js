@@ -1,4 +1,4 @@
-
+const { getUserId } = require('../utils')
 // CHECK SERVER
 function resumeQinfo() {
     return "Welcome to ResumeQ"
@@ -23,6 +23,11 @@ function resumeReviews(_parent, args, context) {
     return context.prisma.resumeReviews()
 }
 
+function listingByReviewer(_parent, args, context) {
+    const userID = getUserId(context)
+    return context.prisma.reviewerListing({ coachID: userID })
+}
+
 
 module.exports = {
     resumeQinfo,
@@ -30,4 +35,5 @@ module.exports = {
     reviewerListings,
     resumeReview,
     resumeReviews,
+    listingByReviewer
 }
