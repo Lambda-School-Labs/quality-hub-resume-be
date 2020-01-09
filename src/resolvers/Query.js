@@ -32,11 +32,16 @@ function resumeReviews(_parent, args, context) {
 }
 
 function listingByReviewer(_parent, args, context) {
-    // retrieves userID from token. userID is passed to prisma.reviewerListing
-    const userID = getUserId(context)
+    // retrieves userID from token. userID is stored in opArgs and passed into prisma.reviewerListing
 
-    return context.prisma.reviewerListing({ coachId: userID })
+    const userID = getUserId(context)
+    console.log(`userID`, userID)
+    return context.prisma.reviewerListing({
+        coachID: userID
+    })
 }
+
+
 
 
 module.exports = {
