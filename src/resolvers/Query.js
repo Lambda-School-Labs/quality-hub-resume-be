@@ -10,7 +10,15 @@ function reviewerListing(_parent, args, context) {
 }
 // REVIEWER LISTINGS (ALL)
 function reviewerListings(_parent, args, context) {
-    return context.prisma.reviewerListings()
+    // opArgs holds arguments that can be used to filter queries
+    const opArgs = {
+
+        where: {
+            // query only returns publshed postings
+            published: true
+        }
+    }
+    return context.prisma.reviewerListings(opArgs)
 }
 
 // RESUME REVIEW by ID
@@ -24,8 +32,14 @@ function resumeReviews(_parent, args, context) {
 }
 
 function listingByReviewer(_parent, args, context) {
+    // retrieves userID from token. userID is stored in opArgs and passed into prisma.reviewerListing
     const userID = getUserId(context)
-    return context.prisma.reviewerListing({ coachID: userID })
+    const opArgs = {
+        where: {
+            coachID: userID
+        }
+    }
+    return context.prisma.reviewerListing(opArgs)
 }
 
 
