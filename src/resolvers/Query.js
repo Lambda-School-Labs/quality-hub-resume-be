@@ -1,27 +1,56 @@
-
+const { getUserId } = require('../utils')
 // CHECK SERVER
-function resumeQinfo(){
+function resumeQinfo() {
     return "Welcome to ResumeQ"
 }
 
-// RESUME LISTINGS
-function reviewerListing(_parent, args, context){
+// REVIEWER LISTING by ID
+function reviewerListing(_parent, args, context) {
     return context.prisma.reviewerListing({ id: args.id })
 }
-
-function reviewerListings(_parent, args, context){
-    return context.prisma.reviewerListings()
+// REVIEWER LISTINGS (ALL)
+function reviewerListings(_parent, args, context) {
+    // opArgs holds arguments that can be used to filter queries
+    const opArgs = {
+        where: {
+            // query only returns publshed postings
+            AND: [{ isPublished: true }]
+        }
+    }
+    // split string and assign lesser value to price_gte and greater value to price_lte
+    if (args.price) {
+        // provide price as a range in a string '#floor, #ceiling'
+        const priceRange = args.prices.split(',')
+        opArgs.where.AND.push({ price_gte: Number(priceRange[0]) });
+        opArgs.where.AND.push({ price_lte: Number(priceRange[1]) });
+    }
+    if (args.description) {
+        opArgs.where.AND.push({ description_contains: args.description })
+    }
+    return context.prisma.reviewerListings(opArgs)
 }
 
-
-// RESUME REVIEWS
-function resumeReview(_parent, args, context){
+// RESUME REVIEW by ID
+function resumeReview(_parent, args, context) {
     return context.prisma.resumeReview({ id: args.id })
 }
 
-function resumeReviews(_parent, args, context){
+// RESUME REVIEWS (ALL)
+function resumeReviews(_parent, args, context) {
     return context.prisma.resumeReviews()
 }
+
+function listingByReviewer(_parent, args, context) {
+    // retrieves userID from token. userID is stored in opArgs and passed into prisma.reviewerListing
+
+    const userID = getUserId(context)
+    console.log(`userID`, userID)
+    return context.prisma.reviewerListing({
+        coachID: userID
+    })
+}
+
+
 
 
 module.exports = {
@@ -30,4 +59,5 @@ module.exports = {
     reviewerListings,
     resumeReview,
     resumeReviews,
+    listingByReviewer
 }

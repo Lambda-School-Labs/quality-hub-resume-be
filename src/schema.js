@@ -7,14 +7,32 @@ scalar DateTime
 extend type Query{
     resumeQinfo: String!
     reviewerListing(id: String!): ReviewerListing!
-    reviewerListings: [ReviewerListing]!
+    listingByReviewer: ReviewerListing
+    reviewerListings(
+        description: String
+        price: Int
+        orderBy: String
+    ): [ReviewerListing]!
     resumeReview(id: String!): ResumeReview!
     resumeReviews: [ResumeReview]!
+
 }
 
 type Mutation{
 
     createReviewerListing(
+        price: Int
+        position: String
+        industry: String
+        description: String
+        createdAt: DateTime
+        updatedAt: DateTime
+        company: String
+        isPublished: Boolean
+    ): ReviewerListing!
+
+    updateReviewerListing(
+        id: String!
         price: Int
         position: String
         industry: String
@@ -35,6 +53,23 @@ type Mutation{
         isAccepted: Boolean
         isDenied: Boolean
         isComplete: Boolean
+        createdAt: DateTime
+        updatedAt: DateTime
+        dateRequested: DateTime
+        dateAccepted: DateTime
+        dateCompleted: DateTime
+        coach: String!
+    ): ResumeReview!
+    
+    updateResumeReview(
+        id: String!
+        name: String
+        isPending: Boolean
+        isAccepted: Boolean
+        isDenied: Boolean
+        isComplete: Boolean
+        createdAt: DateTime
+        updatedAt: DateTime
         dateRequested: DateTime
         dateAccepted: DateTime
         dateCompleted: DateTime
@@ -57,6 +92,7 @@ type ReviewerListing {
     updatedAt: DateTime!
     company: String
     isPublished: Boolean!
+    coach: User!
 }
 
 type ResumeReview {
@@ -66,15 +102,21 @@ type ResumeReview {
     isAccepted: Boolean!
     isDenied: Boolean!
     isComplete: Boolean!
-    dateRequested: DateTime!
-    dateAccepted: DateTime!
-    dateCompleted: DateTime!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    dateRequested: DateTime
+    dateAccepted: DateTime
+    dateCompleted: DateTime
+    coach: User!
+	seeker: User!
 }
 
 extend type User @key(fields: "id"){
     id: ID! @external
     reviewerListing: ReviewerListing
     resumeReview: ResumeReview
+    coach_resume_reviews: [ResumeReview]
+	seeker_resume_reviews: [ResumeReview]
 }
 
 `

@@ -1,6 +1,7 @@
 
 type ReviewerListing {
     id: ID! @id
+    coachID: String @unique
     price: Int
     position: String
     industry: String
@@ -13,11 +14,15 @@ type ReviewerListing {
 
 type ResumeReview {
     id: ID! @id
+    coach: String!
+    seeker: String!
     name: String!
     isPending: Boolean!
     isAccepted: Boolean!
     isDenied: Boolean!
     isComplete: Boolean!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
     dateRequested: DateTime
     dateAccepted: DateTime
     dateCompleted: DateTime
