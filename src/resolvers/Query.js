@@ -24,7 +24,9 @@ function reviewerListings(_parent, args, context) {
         opArgs.where.AND.push({ price_gte: Number(priceRange[0]) });
         opArgs.where.AND.push({ price_lte: Number(priceRange[1]) });
     }
-
+    if (args.description) {
+        opArgs.where.AND.push({ description_contains: args.description })
+    }
     return context.prisma.reviewerListings(opArgs)
 }
 
