@@ -8,7 +8,11 @@ extend type Query{
     resumeQinfo: String!
     reviewerListing(id: String!): ReviewerListing!
     listingByReviewer: ReviewerListing
-    reviewerListings: [ReviewerListing]!
+    reviewerListings(
+        description: String
+        price: Int
+        orderBy
+    ): [ReviewerListing]!
     resumeReview(id: String!): ResumeReview!
     resumeReviews: [ResumeReview]!
 
