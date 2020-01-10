@@ -12,12 +12,19 @@ function reviewerListing(_parent, args, context) {
 function reviewerListings(_parent, args, context) {
     // opArgs holds arguments that can be used to filter queries
     const opArgs = {
-
         where: {
             // query only returns publshed postings
-            isPublished: true
+            AND: [{ isPublished: true }]
         }
     }
+    // split string and assign lesser value to price_gte and greater value to price_lte
+    if (args.price) {
+        // provide price as a range in a string '#floor, #ceiling'
+        const priceRange = args.prices.split(',')
+        opArgs.where.AND.push({ price_gte: Number(priceRange[0]) });
+        opArgs.where.AND.push({ price_lte: Number(priceRange[1]) });
+    }
+
     return context.prisma.reviewerListings(opArgs)
 }
 
