@@ -10,7 +10,7 @@ extend type Query{
     listingByReviewer: ReviewerListing
     reviewerListings(
         description: String
-        price: Int
+        price: String
         orderBy: String
     ): [ReviewerListing]!
     resumeReview(id: String!): ResumeReview!
