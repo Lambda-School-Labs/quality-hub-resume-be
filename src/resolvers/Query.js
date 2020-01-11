@@ -20,7 +20,7 @@ function reviewerListings(_parent, args, context) {
     // split string and assign lesser value to price_gte and greater value to price_lte
     if (args.price) {
         // provide price as a range in a string '#floor, #ceiling'
-        const priceRange = args.prices.split(',')
+        const priceRange = args.price.split(',')
         opArgs.where.AND.push({ price_gte: Number(priceRange[0]) });
         opArgs.where.AND.push({ price_lte: Number(priceRange[1]) });
     }
