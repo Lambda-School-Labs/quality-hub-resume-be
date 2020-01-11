@@ -48,29 +48,16 @@ type Mutation{
     ): ReviewerListing!
 
     createResumeReview(
-        name: String
-        isPending: Boolean
-        isAccepted: Boolean
-        isDenied: Boolean
-        isComplete: Boolean
-        createdAt: DateTime
-        updatedAt: DateTime
-        dateRequested: DateTime
-        dateAccepted: DateTime
-        dateCompleted: DateTime
         coach: String!
+        seeker: String!
     ): ResumeReview!
     
     updateResumeReview(
         id: String!
-        name: String
         isPending: Boolean
         isAccepted: Boolean
         isDenied: Boolean
         isComplete: Boolean
-        createdAt: DateTime
-        updatedAt: DateTime
-        dateRequested: DateTime
         dateAccepted: DateTime
         dateCompleted: DateTime
     ): ResumeReview!
@@ -97,14 +84,12 @@ type ReviewerListing {
 
 type ResumeReview {
     id: ID!
-    name: String!
     isPending: Boolean!
     isAccepted: Boolean!
     isDenied: Boolean!
     isComplete: Boolean!
     createdAt: DateTime!
     updatedAt: DateTime!
-    dateRequested: DateTime
     dateAccepted: DateTime
     dateCompleted: DateTime
     coach: User!
