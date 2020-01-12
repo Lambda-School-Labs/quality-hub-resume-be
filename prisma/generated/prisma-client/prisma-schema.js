@@ -65,14 +65,12 @@ type ResumeReview {
   id: ID!
   coach: String!
   seeker: String!
-  name: String!
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
   isComplete: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  dateRequested: DateTime
   dateAccepted: DateTime
   dateCompleted: DateTime
 }
@@ -87,12 +85,10 @@ input ResumeReviewCreateInput {
   id: ID
   coach: String!
   seeker: String!
-  name: String!
-  isPending: Boolean!
-  isAccepted: Boolean!
-  isDenied: Boolean!
-  isComplete: Boolean!
-  dateRequested: DateTime
+  isPending: Boolean
+  isAccepted: Boolean
+  isDenied: Boolean
+  isComplete: Boolean
   dateAccepted: DateTime
   dateCompleted: DateTime
 }
@@ -109,8 +105,6 @@ enum ResumeReviewOrderByInput {
   coach_DESC
   seeker_ASC
   seeker_DESC
-  name_ASC
-  name_DESC
   isPending_ASC
   isPending_DESC
   isAccepted_ASC
@@ -123,8 +117,6 @@ enum ResumeReviewOrderByInput {
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
-  dateRequested_ASC
-  dateRequested_DESC
   dateAccepted_ASC
   dateAccepted_DESC
   dateCompleted_ASC
@@ -135,14 +127,12 @@ type ResumeReviewPreviousValues {
   id: ID!
   coach: String!
   seeker: String!
-  name: String!
   isPending: Boolean!
   isAccepted: Boolean!
   isDenied: Boolean!
   isComplete: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
-  dateRequested: DateTime
   dateAccepted: DateTime
   dateCompleted: DateTime
 }
@@ -168,12 +158,10 @@ input ResumeReviewSubscriptionWhereInput {
 input ResumeReviewUpdateInput {
   coach: String
   seeker: String
-  name: String
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
   isComplete: Boolean
-  dateRequested: DateTime
   dateAccepted: DateTime
   dateCompleted: DateTime
 }
@@ -181,12 +169,10 @@ input ResumeReviewUpdateInput {
 input ResumeReviewUpdateManyMutationInput {
   coach: String
   seeker: String
-  name: String
   isPending: Boolean
   isAccepted: Boolean
   isDenied: Boolean
   isComplete: Boolean
-  dateRequested: DateTime
   dateAccepted: DateTime
   dateCompleted: DateTime
 }
@@ -234,20 +220,6 @@ input ResumeReviewWhereInput {
   seeker_not_starts_with: String
   seeker_ends_with: String
   seeker_not_ends_with: String
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
   isPending: Boolean
   isPending_not: Boolean
   isAccepted: Boolean
@@ -272,14 +244,6 @@ input ResumeReviewWhereInput {
   updatedAt_lte: DateTime
   updatedAt_gt: DateTime
   updatedAt_gte: DateTime
-  dateRequested: DateTime
-  dateRequested_not: DateTime
-  dateRequested_in: [DateTime!]
-  dateRequested_not_in: [DateTime!]
-  dateRequested_lt: DateTime
-  dateRequested_lte: DateTime
-  dateRequested_gt: DateTime
-  dateRequested_gte: DateTime
   dateAccepted: DateTime
   dateAccepted_not: DateTime
   dateAccepted_in: [DateTime!]
