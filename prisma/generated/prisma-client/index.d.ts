@@ -161,8 +161,6 @@ export type ResumeReviewOrderByInput =
   | "coach_DESC"
   | "seeker_ASC"
   | "seeker_DESC"
-  | "name_ASC"
-  | "name_DESC"
   | "isPending_ASC"
   | "isPending_DESC"
   | "isAccepted_ASC"
@@ -175,14 +173,10 @@ export type ResumeReviewOrderByInput =
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC"
-  | "dateRequested_ASC"
-  | "dateRequested_DESC"
   | "dateAccepted_ASC"
   | "dateAccepted_DESC"
   | "dateCompleted_ASC"
   | "dateCompleted_DESC";
-
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type ReviewerListingOrderByInput =
   | "id_ASC"
@@ -206,43 +200,104 @@ export type ReviewerListingOrderByInput =
   | "isPublished_ASC"
   | "isPublished_DESC";
 
-export interface ReviewerListingCreateInput {
-  id?: Maybe<ID_Input>;
-  coachID?: Maybe<String>;
-  price?: Maybe<Int>;
-  position?: Maybe<String>;
-  industry?: Maybe<String>;
-  description: String;
-  company?: Maybe<String>;
-  isPublished?: Maybe<Boolean>;
-}
-
-export interface ResumeReviewUpdateInput {
-  coach?: Maybe<String>;
-  seeker?: Maybe<String>;
-  name?: Maybe<String>;
-  isPending?: Maybe<Boolean>;
-  isAccepted?: Maybe<Boolean>;
-  isDenied?: Maybe<Boolean>;
-  isComplete?: Maybe<Boolean>;
-  dateRequested?: Maybe<DateTimeInput>;
-  dateAccepted?: Maybe<DateTimeInput>;
-  dateCompleted?: Maybe<DateTimeInput>;
-}
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type ResumeReviewWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface ReviewerListingUpdateManyMutationInput {
-  coachID?: Maybe<String>;
-  price?: Maybe<Int>;
-  position?: Maybe<String>;
-  industry?: Maybe<String>;
-  description?: Maybe<String>;
-  company?: Maybe<String>;
-  isPublished?: Maybe<Boolean>;
+export interface ResumeReviewWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  coach?: Maybe<String>;
+  coach_not?: Maybe<String>;
+  coach_in?: Maybe<String[] | String>;
+  coach_not_in?: Maybe<String[] | String>;
+  coach_lt?: Maybe<String>;
+  coach_lte?: Maybe<String>;
+  coach_gt?: Maybe<String>;
+  coach_gte?: Maybe<String>;
+  coach_contains?: Maybe<String>;
+  coach_not_contains?: Maybe<String>;
+  coach_starts_with?: Maybe<String>;
+  coach_not_starts_with?: Maybe<String>;
+  coach_ends_with?: Maybe<String>;
+  coach_not_ends_with?: Maybe<String>;
+  seeker?: Maybe<String>;
+  seeker_not?: Maybe<String>;
+  seeker_in?: Maybe<String[] | String>;
+  seeker_not_in?: Maybe<String[] | String>;
+  seeker_lt?: Maybe<String>;
+  seeker_lte?: Maybe<String>;
+  seeker_gt?: Maybe<String>;
+  seeker_gte?: Maybe<String>;
+  seeker_contains?: Maybe<String>;
+  seeker_not_contains?: Maybe<String>;
+  seeker_starts_with?: Maybe<String>;
+  seeker_not_starts_with?: Maybe<String>;
+  seeker_ends_with?: Maybe<String>;
+  seeker_not_ends_with?: Maybe<String>;
+  isPending?: Maybe<Boolean>;
+  isPending_not?: Maybe<Boolean>;
+  isAccepted?: Maybe<Boolean>;
+  isAccepted_not?: Maybe<Boolean>;
+  isDenied?: Maybe<Boolean>;
+  isDenied_not?: Maybe<Boolean>;
+  isComplete?: Maybe<Boolean>;
+  isComplete_not?: Maybe<Boolean>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  dateAccepted?: Maybe<DateTimeInput>;
+  dateAccepted_not?: Maybe<DateTimeInput>;
+  dateAccepted_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateAccepted_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateAccepted_lt?: Maybe<DateTimeInput>;
+  dateAccepted_lte?: Maybe<DateTimeInput>;
+  dateAccepted_gt?: Maybe<DateTimeInput>;
+  dateAccepted_gte?: Maybe<DateTimeInput>;
+  dateCompleted?: Maybe<DateTimeInput>;
+  dateCompleted_not?: Maybe<DateTimeInput>;
+  dateCompleted_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCompleted_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dateCompleted_lt?: Maybe<DateTimeInput>;
+  dateCompleted_lte?: Maybe<DateTimeInput>;
+  dateCompleted_gt?: Maybe<DateTimeInput>;
+  dateCompleted_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ResumeReviewWhereInput[] | ResumeReviewWhereInput>;
+  OR?: Maybe<ResumeReviewWhereInput[] | ResumeReviewWhereInput>;
+  NOT?: Maybe<ResumeReviewWhereInput[] | ResumeReviewWhereInput>;
 }
+
+export type ReviewerListingWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  coachID?: Maybe<String>;
+}>;
 
 export interface ReviewerListingWhereInput {
   id?: Maybe<ID_Input>;
@@ -360,169 +415,62 @@ export interface ReviewerListingWhereInput {
   NOT?: Maybe<ReviewerListingWhereInput[] | ReviewerListingWhereInput>;
 }
 
-export type ReviewerListingWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  coachID?: Maybe<String>;
-}>;
-
 export interface ResumeReviewCreateInput {
   id?: Maybe<ID_Input>;
   coach: String;
   seeker: String;
-  name: String;
-  isPending: Boolean;
-  isAccepted: Boolean;
-  isDenied: Boolean;
-  isComplete: Boolean;
-  dateRequested?: Maybe<DateTimeInput>;
+  isPending?: Maybe<Boolean>;
+  isAccepted?: Maybe<Boolean>;
+  isDenied?: Maybe<Boolean>;
+  isComplete?: Maybe<Boolean>;
   dateAccepted?: Maybe<DateTimeInput>;
   dateCompleted?: Maybe<DateTimeInput>;
 }
 
-export interface ResumeReviewWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
+export interface ResumeReviewUpdateInput {
   coach?: Maybe<String>;
-  coach_not?: Maybe<String>;
-  coach_in?: Maybe<String[] | String>;
-  coach_not_in?: Maybe<String[] | String>;
-  coach_lt?: Maybe<String>;
-  coach_lte?: Maybe<String>;
-  coach_gt?: Maybe<String>;
-  coach_gte?: Maybe<String>;
-  coach_contains?: Maybe<String>;
-  coach_not_contains?: Maybe<String>;
-  coach_starts_with?: Maybe<String>;
-  coach_not_starts_with?: Maybe<String>;
-  coach_ends_with?: Maybe<String>;
-  coach_not_ends_with?: Maybe<String>;
   seeker?: Maybe<String>;
-  seeker_not?: Maybe<String>;
-  seeker_in?: Maybe<String[] | String>;
-  seeker_not_in?: Maybe<String[] | String>;
-  seeker_lt?: Maybe<String>;
-  seeker_lte?: Maybe<String>;
-  seeker_gt?: Maybe<String>;
-  seeker_gte?: Maybe<String>;
-  seeker_contains?: Maybe<String>;
-  seeker_not_contains?: Maybe<String>;
-  seeker_starts_with?: Maybe<String>;
-  seeker_not_starts_with?: Maybe<String>;
-  seeker_ends_with?: Maybe<String>;
-  seeker_not_ends_with?: Maybe<String>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
   isPending?: Maybe<Boolean>;
-  isPending_not?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
-  isAccepted_not?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
-  isDenied_not?: Maybe<Boolean>;
   isComplete?: Maybe<Boolean>;
-  isComplete_not?: Maybe<Boolean>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  dateRequested?: Maybe<DateTimeInput>;
-  dateRequested_not?: Maybe<DateTimeInput>;
-  dateRequested_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateRequested_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateRequested_lt?: Maybe<DateTimeInput>;
-  dateRequested_lte?: Maybe<DateTimeInput>;
-  dateRequested_gt?: Maybe<DateTimeInput>;
-  dateRequested_gte?: Maybe<DateTimeInput>;
   dateAccepted?: Maybe<DateTimeInput>;
-  dateAccepted_not?: Maybe<DateTimeInput>;
-  dateAccepted_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateAccepted_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateAccepted_lt?: Maybe<DateTimeInput>;
-  dateAccepted_lte?: Maybe<DateTimeInput>;
-  dateAccepted_gt?: Maybe<DateTimeInput>;
-  dateAccepted_gte?: Maybe<DateTimeInput>;
   dateCompleted?: Maybe<DateTimeInput>;
-  dateCompleted_not?: Maybe<DateTimeInput>;
-  dateCompleted_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateCompleted_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  dateCompleted_lt?: Maybe<DateTimeInput>;
-  dateCompleted_lte?: Maybe<DateTimeInput>;
-  dateCompleted_gt?: Maybe<DateTimeInput>;
-  dateCompleted_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<ResumeReviewWhereInput[] | ResumeReviewWhereInput>;
-  OR?: Maybe<ResumeReviewWhereInput[] | ResumeReviewWhereInput>;
-  NOT?: Maybe<ResumeReviewWhereInput[] | ResumeReviewWhereInput>;
 }
 
 export interface ResumeReviewUpdateManyMutationInput {
   coach?: Maybe<String>;
   seeker?: Maybe<String>;
-  name?: Maybe<String>;
   isPending?: Maybe<Boolean>;
   isAccepted?: Maybe<Boolean>;
   isDenied?: Maybe<Boolean>;
   isComplete?: Maybe<Boolean>;
-  dateRequested?: Maybe<DateTimeInput>;
   dateAccepted?: Maybe<DateTimeInput>;
   dateCompleted?: Maybe<DateTimeInput>;
 }
 
-export interface ReviewerListingSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ReviewerListingWhereInput>;
-  AND?: Maybe<
-    | ReviewerListingSubscriptionWhereInput[]
-    | ReviewerListingSubscriptionWhereInput
-  >;
-  OR?: Maybe<
-    | ReviewerListingSubscriptionWhereInput[]
-    | ReviewerListingSubscriptionWhereInput
-  >;
-  NOT?: Maybe<
-    | ReviewerListingSubscriptionWhereInput[]
-    | ReviewerListingSubscriptionWhereInput
-  >;
+export interface ReviewerListingCreateInput {
+  id?: Maybe<ID_Input>;
+  coachID?: Maybe<String>;
+  price?: Maybe<Int>;
+  position?: Maybe<String>;
+  industry?: Maybe<String>;
+  description: String;
+  company?: Maybe<String>;
+  isPublished?: Maybe<Boolean>;
 }
 
 export interface ReviewerListingUpdateInput {
+  coachID?: Maybe<String>;
+  price?: Maybe<Int>;
+  position?: Maybe<String>;
+  industry?: Maybe<String>;
+  description?: Maybe<String>;
+  company?: Maybe<String>;
+  isPublished?: Maybe<Boolean>;
+}
+
+export interface ReviewerListingUpdateManyMutationInput {
   coachID?: Maybe<String>;
   price?: Maybe<Int>;
   position?: Maybe<String>;
@@ -549,27 +497,90 @@ export interface ResumeReviewSubscriptionWhereInput {
   >;
 }
 
+export interface ReviewerListingSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ReviewerListingWhereInput>;
+  AND?: Maybe<
+    | ReviewerListingSubscriptionWhereInput[]
+    | ReviewerListingSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | ReviewerListingSubscriptionWhereInput[]
+    | ReviewerListingSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | ReviewerListingSubscriptionWhereInput[]
+    | ReviewerListingSubscriptionWhereInput
+  >;
+}
+
 export interface NodeNode {
   id: ID_Output;
 }
 
-export interface ReviewerListingEdge {
-  node: ReviewerListing;
-  cursor: String;
+export interface ResumeReview {
+  id: ID_Output;
+  coach: String;
+  seeker: String;
+  isPending: Boolean;
+  isAccepted: Boolean;
+  isDenied: Boolean;
+  isComplete: Boolean;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  dateAccepted?: DateTimeOutput;
+  dateCompleted?: DateTimeOutput;
 }
 
-export interface ReviewerListingEdgePromise
-  extends Promise<ReviewerListingEdge>,
+export interface ResumeReviewPromise
+  extends Promise<ResumeReview>,
     Fragmentable {
-  node: <T = ReviewerListingPromise>() => T;
-  cursor: () => Promise<String>;
+  id: () => Promise<ID_Output>;
+  coach: () => Promise<String>;
+  seeker: () => Promise<String>;
+  isPending: () => Promise<Boolean>;
+  isAccepted: () => Promise<Boolean>;
+  isDenied: () => Promise<Boolean>;
+  isComplete: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  dateAccepted: () => Promise<DateTimeOutput>;
+  dateCompleted: () => Promise<DateTimeOutput>;
 }
 
-export interface ReviewerListingEdgeSubscription
-  extends Promise<AsyncIterator<ReviewerListingEdge>>,
+export interface ResumeReviewSubscription
+  extends Promise<AsyncIterator<ResumeReview>>,
     Fragmentable {
-  node: <T = ReviewerListingSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  coach: () => Promise<AsyncIterator<String>>;
+  seeker: () => Promise<AsyncIterator<String>>;
+  isPending: () => Promise<AsyncIterator<Boolean>>;
+  isAccepted: () => Promise<AsyncIterator<Boolean>>;
+  isDenied: () => Promise<AsyncIterator<Boolean>>;
+  isComplete: () => Promise<AsyncIterator<Boolean>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
+  dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ResumeReviewNullablePromise
+  extends Promise<ResumeReview | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  coach: () => Promise<String>;
+  seeker: () => Promise<String>;
+  isPending: () => Promise<Boolean>;
+  isAccepted: () => Promise<Boolean>;
+  isDenied: () => Promise<Boolean>;
+  isComplete: () => Promise<Boolean>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  dateAccepted: () => Promise<DateTimeOutput>;
+  dateCompleted: () => Promise<DateTimeOutput>;
 }
 
 export interface ResumeReviewConnection {
@@ -593,161 +604,27 @@ export interface ResumeReviewConnectionSubscription
   aggregate: <T = AggregateResumeReviewSubscription>() => T;
 }
 
-export interface ReviewerListingPreviousValues {
-  id: ID_Output;
-  coachID?: String;
-  price?: Int;
-  position?: String;
-  industry?: String;
-  description: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  company?: String;
-  isPublished: Boolean;
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface ReviewerListingPreviousValuesPromise
-  extends Promise<ReviewerListingPreviousValues>,
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  coachID: () => Promise<String>;
-  price: () => Promise<Int>;
-  position: () => Promise<String>;
-  industry: () => Promise<String>;
-  description: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  company: () => Promise<String>;
-  isPublished: () => Promise<Boolean>;
-}
-
-export interface ReviewerListingPreviousValuesSubscription
-  extends Promise<AsyncIterator<ReviewerListingPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  coachID: () => Promise<AsyncIterator<String>>;
-  price: () => Promise<AsyncIterator<Int>>;
-  position: () => Promise<AsyncIterator<String>>;
-  industry: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  company: () => Promise<AsyncIterator<String>>;
-  isPublished: () => Promise<AsyncIterator<Boolean>>;
-}
-
-export interface ReviewerListingConnection {
-  pageInfo: PageInfo;
-  edges: ReviewerListingEdge[];
-}
-
-export interface ReviewerListingConnectionPromise
-  extends Promise<ReviewerListingConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ReviewerListingEdge>>() => T;
-  aggregate: <T = AggregateReviewerListingPromise>() => T;
-}
-
-export interface ReviewerListingConnectionSubscription
-  extends Promise<AsyncIterator<ReviewerListingConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ReviewerListingEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateReviewerListingSubscription>() => T;
-}
-
-export interface AggregateReviewerListing {
-  count: Int;
-}
-
-export interface AggregateReviewerListingPromise
-  extends Promise<AggregateReviewerListing>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateReviewerListingSubscription
-  extends Promise<AsyncIterator<AggregateReviewerListing>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface ResumeReviewSubscriptionPayload {
-  mutation: MutationType;
-  node: ResumeReview;
-  updatedFields: String[];
-  previousValues: ResumeReviewPreviousValues;
-}
-
-export interface ResumeReviewSubscriptionPayloadPromise
-  extends Promise<ResumeReviewSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ResumeReviewPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ResumeReviewPreviousValuesPromise>() => T;
-}
-
-export interface ResumeReviewSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ResumeReviewSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ResumeReviewSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ResumeReviewPreviousValuesSubscription>() => T;
-}
-
-export interface ResumeReviewPreviousValues {
-  id: ID_Output;
-  coach: String;
-  seeker: String;
-  name: String;
-  isPending: Boolean;
-  isAccepted: Boolean;
-  isDenied: Boolean;
-  isComplete: Boolean;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  dateRequested?: DateTimeOutput;
-  dateAccepted?: DateTimeOutput;
-  dateCompleted?: DateTimeOutput;
-}
-
-export interface ResumeReviewPreviousValuesPromise
-  extends Promise<ResumeReviewPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  coach: () => Promise<String>;
-  seeker: () => Promise<String>;
-  name: () => Promise<String>;
-  isPending: () => Promise<Boolean>;
-  isAccepted: () => Promise<Boolean>;
-  isDenied: () => Promise<Boolean>;
-  isComplete: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  dateRequested: () => Promise<DateTimeOutput>;
-  dateAccepted: () => Promise<DateTimeOutput>;
-  dateCompleted: () => Promise<DateTimeOutput>;
-}
-
-export interface ResumeReviewPreviousValuesSubscription
-  extends Promise<AsyncIterator<ResumeReviewPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  coach: () => Promise<AsyncIterator<String>>;
-  seeker: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
-  isPending: () => Promise<AsyncIterator<Boolean>>;
-  isAccepted: () => Promise<AsyncIterator<Boolean>>;
-  isDenied: () => Promise<AsyncIterator<Boolean>>;
-  isComplete: () => Promise<AsyncIterator<Boolean>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  dateRequested: () => Promise<AsyncIterator<DateTimeOutput>>;
-  dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
-  dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ResumeReviewEdge {
@@ -767,6 +644,22 @@ export interface ResumeReviewEdgeSubscription
     Fragmentable {
   node: <T = ResumeReviewSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateResumeReview {
+  count: Int;
+}
+
+export interface AggregateResumeReviewPromise
+  extends Promise<AggregateResumeReview>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateResumeReviewSubscription
+  extends Promise<AsyncIterator<AggregateResumeReview>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface ReviewerListing {
@@ -827,74 +720,147 @@ export interface ReviewerListingNullablePromise
   isPublished: () => Promise<Boolean>;
 }
 
-export interface ResumeReview {
+export interface ReviewerListingConnection {
+  pageInfo: PageInfo;
+  edges: ReviewerListingEdge[];
+}
+
+export interface ReviewerListingConnectionPromise
+  extends Promise<ReviewerListingConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ReviewerListingEdge>>() => T;
+  aggregate: <T = AggregateReviewerListingPromise>() => T;
+}
+
+export interface ReviewerListingConnectionSubscription
+  extends Promise<AsyncIterator<ReviewerListingConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ReviewerListingEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateReviewerListingSubscription>() => T;
+}
+
+export interface ReviewerListingEdge {
+  node: ReviewerListing;
+  cursor: String;
+}
+
+export interface ReviewerListingEdgePromise
+  extends Promise<ReviewerListingEdge>,
+    Fragmentable {
+  node: <T = ReviewerListingPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ReviewerListingEdgeSubscription
+  extends Promise<AsyncIterator<ReviewerListingEdge>>,
+    Fragmentable {
+  node: <T = ReviewerListingSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateReviewerListing {
+  count: Int;
+}
+
+export interface AggregateReviewerListingPromise
+  extends Promise<AggregateReviewerListing>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReviewerListingSubscription
+  extends Promise<AsyncIterator<AggregateReviewerListing>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface ResumeReviewSubscriptionPayload {
+  mutation: MutationType;
+  node: ResumeReview;
+  updatedFields: String[];
+  previousValues: ResumeReviewPreviousValues;
+}
+
+export interface ResumeReviewSubscriptionPayloadPromise
+  extends Promise<ResumeReviewSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ResumeReviewPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ResumeReviewPreviousValuesPromise>() => T;
+}
+
+export interface ResumeReviewSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ResumeReviewSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ResumeReviewSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ResumeReviewPreviousValuesSubscription>() => T;
+}
+
+export interface ResumeReviewPreviousValues {
   id: ID_Output;
   coach: String;
   seeker: String;
-  name: String;
   isPending: Boolean;
   isAccepted: Boolean;
   isDenied: Boolean;
   isComplete: Boolean;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
-  dateRequested?: DateTimeOutput;
   dateAccepted?: DateTimeOutput;
   dateCompleted?: DateTimeOutput;
 }
 
-export interface ResumeReviewPromise
-  extends Promise<ResumeReview>,
+export interface ResumeReviewPreviousValuesPromise
+  extends Promise<ResumeReviewPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   coach: () => Promise<String>;
   seeker: () => Promise<String>;
-  name: () => Promise<String>;
   isPending: () => Promise<Boolean>;
   isAccepted: () => Promise<Boolean>;
   isDenied: () => Promise<Boolean>;
   isComplete: () => Promise<Boolean>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
-  dateRequested: () => Promise<DateTimeOutput>;
   dateAccepted: () => Promise<DateTimeOutput>;
   dateCompleted: () => Promise<DateTimeOutput>;
 }
 
-export interface ResumeReviewSubscription
-  extends Promise<AsyncIterator<ResumeReview>>,
+export interface ResumeReviewPreviousValuesSubscription
+  extends Promise<AsyncIterator<ResumeReviewPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   coach: () => Promise<AsyncIterator<String>>;
   seeker: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
   isPending: () => Promise<AsyncIterator<Boolean>>;
   isAccepted: () => Promise<AsyncIterator<Boolean>>;
   isDenied: () => Promise<AsyncIterator<Boolean>>;
   isComplete: () => Promise<AsyncIterator<Boolean>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  dateRequested: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateAccepted: () => Promise<AsyncIterator<DateTimeOutput>>;
   dateCompleted: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface ResumeReviewNullablePromise
-  extends Promise<ResumeReview | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  coach: () => Promise<String>;
-  seeker: () => Promise<String>;
-  name: () => Promise<String>;
-  isPending: () => Promise<Boolean>;
-  isAccepted: () => Promise<Boolean>;
-  isDenied: () => Promise<Boolean>;
-  isComplete: () => Promise<Boolean>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  dateRequested: () => Promise<DateTimeOutput>;
-  dateAccepted: () => Promise<DateTimeOutput>;
-  dateCompleted: () => Promise<DateTimeOutput>;
 }
 
 export interface ReviewerListingSubscriptionPayload {
@@ -922,60 +888,64 @@ export interface ReviewerListingSubscriptionPayloadSubscription
   previousValues: <T = ReviewerListingPreviousValuesSubscription>() => T;
 }
 
-export interface BatchPayload {
-  count: Long;
+export interface ReviewerListingPreviousValues {
+  id: ID_Output;
+  coachID?: String;
+  price?: Int;
+  position?: String;
+  industry?: String;
+  description: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  company?: String;
+  isPublished: Boolean;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
+export interface ReviewerListingPreviousValuesPromise
+  extends Promise<ReviewerListingPreviousValues>,
     Fragmentable {
-  count: () => Promise<Long>;
+  id: () => Promise<ID_Output>;
+  coachID: () => Promise<String>;
+  price: () => Promise<Int>;
+  position: () => Promise<String>;
+  industry: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  company: () => Promise<String>;
+  isPublished: () => Promise<Boolean>;
 }
 
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
+export interface ReviewerListingPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReviewerListingPreviousValues>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  coachID: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<Int>>;
+  position: () => Promise<AsyncIterator<String>>;
+  industry: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  company: () => Promise<AsyncIterator<String>>;
+  isPublished: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
+/*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
 
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateResumeReview {
-  count: Int;
-}
-
-export interface AggregateResumeReviewPromise
-  extends Promise<AggregateResumeReview>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateResumeReviewSubscription
-  extends Promise<AsyncIterator<AggregateResumeReview>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /*
 DateTime scalar input type, allowing Date
@@ -993,22 +963,6 @@ The `Int` scalar type represents non-fractional signed whole numeric values. Int
 export type Int = number;
 
 export type Long = string;
-
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
 
 /**
  * Model Metadata
