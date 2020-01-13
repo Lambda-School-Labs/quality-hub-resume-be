@@ -40,6 +40,50 @@ function resumeReviews(_parent, args, context) {
     return context.prisma.resumeReviews()
 }
 
+// Query to return the ResumeReviews that are -requested- (i.e. where isPending = true and isAccepted = false)
+function requestedResumeReviews(_parent, args, context) {
+    const userID = getUserId(context)
+    const opArgs = {
+        where: {
+            AND: [{ coach: userID }, { isPending: true }, { isAccepted: false }]
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
+}
+
+// Query to return the ResumeReviews that are accepted, but not completed -- (i.e. where isAccepted = true, and isComplete = false)
+function acceptedResumeReviews(_parent, args, context) {
+    const userID = getUserId(context)
+    const opArgs = {
+        where: {
+            AND: [{ coach: userID }, { isAccepted: true }, { isComplete: false }]
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
+}
+
+// Query to return the ResumeReviews that are completed (i.e. where isCompleted=true)
+function completedResumeReviews(_parent, args, context) {
+    const userID = getUserId(context)
+    const opArgs = {
+        where: {
+            AND: [{ coach: userID }, { isAccepted: true }, { isComplete: true }]
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
+}
+
+// Query to return the ResumeReviews that are declined (i.e. where isPending=false and isAccepted = false)
+function declinedResumeReviews(_parent, args, context) {
+    const userID = getUserId(context)
+    const opArgs = {
+        where: {
+            AND: [{ coach: userID }, { isAccepted: false }, { isPending: false }]
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
+}
+
 function listingByReviewer(_parent, args, context) {
     // retrieves userID from token. userID is stored in opArgs and passed into prisma.reviewerListing
 
@@ -59,5 +103,9 @@ module.exports = {
     reviewerListings,
     resumeReview,
     resumeReviews,
-    listingByReviewer
+    listingByReviewer,
+    requestedResumeReviews,
+    acceptedResumeReviews,
+    completedResumeReviews,
+    declinedResumeReviews
 }
