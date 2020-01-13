@@ -62,14 +62,6 @@ function createResumeReview(parent, args, context) {
     const userID = getUserId(context)
 
     return context.prisma.createResumeReview({
-        name: args.name,
-        isPending: args.isPending,
-        isAccepted: args.isAccepted,
-        isDenied: args.isDenied,
-        isComplete: args.isComplete,
-        dateRequested: args.dateRequested,
-        dateAccepted: args.dateAccepted,
-        dateCompleted: args.dateCompleted,
         coach: args.coach,
         seeker: userID,
     })
