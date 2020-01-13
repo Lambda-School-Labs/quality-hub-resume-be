@@ -51,7 +51,7 @@ function requestedResumeReviews(_parent, args, context) {
     return context.prisma.resumeReviews(opArgs)
 }
 
-// Query to return the ResumeReviews that are accepted, but not completed -- (i.e. where isAccepted = true, and isComplete = false)
+// Query to return the ResumeReviews that are accepted, but not completed -- (i.e. where isAccepted = true, and isComplete = false) This returns a users Work In Progress
 function acceptedResumeReviews(_parent, args, context) {
     const userID = getUserId(context)
     const opArgs = {
