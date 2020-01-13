@@ -3,7 +3,7 @@
 const { getUserId } = require('../utils')
 
 // MUTATION CREATE REVIEWER LISTING "POST"
-async function createReviewerListing(parent, args, context){
+async function createReviewerListing(parent, args, context) {
 
     const coachID = getUserId(context)
 
@@ -22,7 +22,7 @@ async function createReviewerListing(parent, args, context){
 }
 
 // MUTATION UPDATE REVIEWER LISTING "PUT"
-async function updateReviewerListing(perent, args, context){
+async function updateReviewerListing(perent, args, context) {
 
     const coachID = getUserId(context)
 
@@ -46,9 +46,9 @@ async function updateReviewerListing(perent, args, context){
 }
 
 // MUTATION DELETE REVIEWER LISTING by ID
-function deleteReviewerListing(parent, args, context){
+function deleteReviewerListing(parent, args, context) {
     const id = getUserId(context)
-    return context.prisma.deleteReviewerListing({ 
+    return context.prisma.deleteReviewerListing({
         coachID: id,
     })
 }
@@ -57,9 +57,9 @@ function deleteReviewerListing(parent, args, context){
 
 ///
 // MUTATION CREATE RESUME REVIEW "POST"
-function createResumeReview(parent, args, context){
+function createResumeReview(parent, args, context) {
 
-    const seeker = getUserId(context)
+    const userID = getUserId(context)
 
     return context.prisma.createResumeReview({
         name: args.name,
@@ -71,12 +71,12 @@ function createResumeReview(parent, args, context){
         dateAccepted: args.dateAccepted,
         dateCompleted: args.dateCompleted,
         coach: args.coach,
-        seeker,
+        seeker: userID,
     })
 }
 
 // MUTATION UPDATE RESUME REVIEW "PUT"
-async function updateResumeReview(perent, args, context){
+async function updateResumeReview(perent, args, context) {
 
     const seeker = getUserId(context)
 
@@ -99,10 +99,10 @@ async function updateResumeReview(perent, args, context){
 }
 
 // MUTATION DELETE RESUME REVIEW by ID
-function deleteResumeReview(parent, args, context){
+function deleteResumeReview(parent, args, context) {
     const id = getUserId(context)
-    return context.prisma.deleteResumeReview({ 
-       seeker: id,
+    return context.prisma.deleteResumeReview({
+        seeker: id,
     })
 }
 
@@ -114,6 +114,5 @@ module.exports = {
     createResumeReview,
     updateResumeReview,
     deleteResumeReview,
-    
-  }
 
+}
