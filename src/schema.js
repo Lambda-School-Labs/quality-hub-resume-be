@@ -19,6 +19,8 @@ extend type Query{
     acceptedResumeReviews: [ResumeReview]!
     completedResumeReviews: [ResumeReview]!
     declinedResumeReviews: [ResumeReview]!
+    resumeReviewsBySeeker: [ResumeReview]!
+
 
 }
 
