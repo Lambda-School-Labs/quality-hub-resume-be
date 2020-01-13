@@ -54,10 +54,10 @@ function listingByReviewer(_parent, args, context) {
 // get reviews by seekerID
 // Where seeker is UserID from getUserID function
 // DisplayAccepted oness
-function reviewsBySeeker(_parent, args, context){
-    const seekerID = getUserId(context)
+function resumeReviewsBySeeker(_parent, args, context){
+    const userID = getUserId(context)
     return context.prisma.resumeReviews({
-        seekerID: userID
+        seeker: userID
     })
 }
 
@@ -69,5 +69,5 @@ module.exports = {
     resumeReview,
     resumeReviews,
     listingByReviewer,
-    reviewsBySeeker,
+    resumeReviewsBySeeker,
 }

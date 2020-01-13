@@ -15,6 +15,8 @@ extend type Query{
     ): [ReviewerListing]!
     resumeReview(id: String!): ResumeReview!
     resumeReviews: [ResumeReview]!
+    resumeReviewsBySeeker: [ResumeReview]!
+
 
 }
 
