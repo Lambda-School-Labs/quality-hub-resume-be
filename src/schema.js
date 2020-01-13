@@ -15,6 +15,10 @@ extend type Query{
     ): [ReviewerListing]!
     resumeReview(id: String!): ResumeReview!
     resumeReviews: [ResumeReview]!
+    requestedResumeReviews: [ResumeReview]!
+    acceptedResumeReviews: [ResumeReview]!
+    completedResumeReviews: [ResumeReview]!
+    declinedResumeReviews: [ResumeReview]!
     resumeReviewsBySeeker: [ResumeReview]!
 
 
