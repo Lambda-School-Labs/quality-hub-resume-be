@@ -49,7 +49,6 @@ type Mutation{
 
     createResumeReview(
         coach: String!
-        seeker: String!
     ): ResumeReview!
     
     updateResumeReview(
