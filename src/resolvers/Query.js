@@ -54,12 +54,22 @@ function listingByReviewer(_parent, args, context) {
 // get reviews by seekerID
 // Where seeker is UserID from getUserID function
 // DisplayAccepted oness
+// function resumeReviewsBySeeker(_parent, args, context){
+//     const userID = getUserId(context)
+//     return context.prisma.resumeReviews({
+//         seeker: userID
+//     })
+// }
+
 function resumeReviewsBySeeker(_parent, args, context){
     const userID = getUserId(context)
     return context.prisma.resumeReviews({
-        seeker: userID
+        where: {seeker: userID}
     })
 }
+
+
+
 
 
 module.exports = {
