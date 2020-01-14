@@ -67,7 +67,7 @@ function createResumeReview(parent, args, context) {
     })
 }
 
-// MUTATION UPDATE RESUME REVIEW "PUT", only the assigned coach can make the mutation
+// MUTATION UPDATE RESUME REVIEW "PUT"
 async function respondResumeReview(parent, args, context) {
     const userID = getUserId(context)
 
@@ -77,39 +77,44 @@ async function respondResumeReview(parent, args, context) {
         }
     }
 
-    // updates to pass into updateResumeReview
-    const updates = {
-        ...args,
-    }
-
-
     // if ResumeReview is accepcted, set dateAccepted to current date in format ISO8601
     if (args.isAccepted) {
         // converts current date to ISO8601
-        updates.dateAccepted = new Date().toISOString();
+        args.dateAccepted = new Date().toISOString();
     }
 
+    // updates to pass into updateResumeReview
+    const updates = {
+        dateAccepted: args.dateAccepted,
+        isPending: args.isPending,
+        isAccepted: args.isAccepted,
+        isDenied: args.isDenied
+    }
+    console.log(`args`, args)
+    console.log(`respondeResumeReview / updates`, updates)
 
-
-    return context.prisma.updateResumeReview(opArgs, { data: updates })
+    return context.prisma.updateResumeReview({
+        where: {
+            id: args.id
+        },
+        data: updates
+    })
 }
 
 async function updateResumeReview(parent, args, context) {
     const userID = getUserId
 
-    const opArgs = {
-        where: {
-            AND: [{ id: args.id }, { coach: userID }]
-        }
-    }
-
     // updates objects 
     const updates = {
-        ...args,
+        isComplete: args.isComplete
     }
 
+    console.log(`args.id`, args.id)
+
     // retrieve original ResumeReview entry for checking isCompleted
-    const originalEntry = await context.prisma.resumeReviews({ where: { id: args.id } })
+    const originalEntry = await context.prisma.resumeReview({
+        id: args.id
+    })
 
     // checks if originalEntry is not accepted and new value is accepted. if so, dateCompleted is set to current date
     if (!originalEntry.isAccepted && args.isAccepted) {
@@ -117,7 +122,14 @@ async function updateResumeReview(parent, args, context) {
         updates.dateCompleted = new Date().toISOString();
     }
 
-    return context.prisma.updateResumeReview(opArgs, { data: updates })
+    console.log(`updateResumeReview / updates`, updates)
+
+    return context.prisma.updateResumeReview({
+        where: {
+            id: args.id
+        },
+        data: updates
+    })
 }
 
 
