@@ -57,10 +57,16 @@ type Mutation{
         coach: String!
     ): ResumeReview!
     
-    acceptResumeReview(
+    respondResumeReview(
         id:String!
-        isPending: Boolean
-        isAccepted: Boolean
+        isPending: Boolean!
+        isAccepted: Boolean!
+        isDenied: Boolean!
+    ): ResumeReview
+
+    updateResumeReview(
+        id: String!
+        isComplete: Boolean
     ): ResumeReview
 
     deleteResumeReview(
