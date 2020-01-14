@@ -16,6 +16,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://resumeqbe-8689136a16.herokuapp.com/quality-hub-resume-be/dev`
+  endpoint: `${process.env["PRISMA_ENDPOINT"]}`
 });
 exports.prisma = new exports.Prisma();
