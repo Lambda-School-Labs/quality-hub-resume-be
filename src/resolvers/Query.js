@@ -10,7 +10,7 @@ function reviewerListing(_parent, args, context) {
 }
 // REVIEWER LISTINGS (ALL)
 function reviewerListings(_parent, args, context) {
-    // opArgs holds arguments that can be used to filter queries
+    // opArgs holds arguments that can be used to filter queries including what order to return data
     const opArgs = {
         orderBy: args.orderBy,
         where: {
