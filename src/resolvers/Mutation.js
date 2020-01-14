@@ -67,27 +67,37 @@ function createResumeReview(parent, args, context) {
     })
 }
 
-// MUTATION UPDATE RESUME REVIEW "PUT"
-async function updateResumeReview(perent, args, context) {
+// MUTATION UPDATE RESUME REVIEW "PUT", only the assigned coach can make the mutation
+async function acceptResumeReview(parent, args, context) {
+    const userID = getUserId(context)
 
-    const seeker = getUserId(context)
-
-    return context.prisma.updateResumeReview({
+    const opArgs = {
         where: {
-            id: args.id
-        },
-        data: {
-            name: args.name,
-            isPending: args.isPending,
-            isAccepted: args.isAccepted,
-            isDenied: args.isDenied,
-            isComplete: args.isComplete,
-            dateRequested: args.dateRequested,
-            dateAccepted: args.dateAccepted,
-            dateCompleted: args.dateCompleted,
-            seeker,
+            AND: [{ id: args.id }, { coach: userID }]
         }
-    })
+    }
+
+    const updates = {
+        ...args
+    }
+
+    return context.prisma.updateResumeReview(opArgs, updates)
+}
+
+async function acceptResumeReview(parent, args, context) {
+    const userID = getUserId(context)
+
+    const opArgs = {
+        where: {
+            AND: [{ id: args.id }, { coach: userID }]
+        }
+    }
+
+    const updates = {
+        ...args
+    }
+
+    return context.prisma.updateResumeReview(opArgs, updates)
 }
 
 // MUTATION DELETE RESUME REVIEW by ID
