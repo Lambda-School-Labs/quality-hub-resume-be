@@ -91,7 +91,7 @@ async function respondResumeReview(parent, args, context) {
 
 
 
-    return context.prisma.updateResumeReview(opArgs, updates)
+    return context.prisma.updateResumeReview(opArgs, { data: updates })
 }
 
 async function updateResumeReview(parent, args, context) {
@@ -117,7 +117,7 @@ async function updateResumeReview(parent, args, context) {
         updates.dateCompleted = new Date().toISOString();
     }
 
-    return context.prisma.updateResumeReview(opArgs, updates)
+    return context.prisma.updateResumeReview(opArgs, { data: updates })
 }
 
 
