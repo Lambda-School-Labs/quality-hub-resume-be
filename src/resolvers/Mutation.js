@@ -70,6 +70,7 @@ function createResumeReview(parent, args, context) {
 // MUTATION UPDATE RESUME REVIEW "PUT"
 async function respondResumeReview(parent, args, context) {
     const userID = getUserId(context)
+    console.log(`~~respondResumeReview~~`)
 
     const opArgs = {
         where: {
@@ -108,16 +109,8 @@ async function updateResumeReview(parent, args, context) {
     const updates = {
         isComplete: args.isComplete
     }
-
-    console.log(`args.id`, args.id)
-
-    // retrieve original ResumeReview entry for checking isCompleted
-    const originalEntry = await context.prisma.resumeReview({
-        id: args.id
-    })
-
-    // checks if originalEntry is not accepted and new value is accepted. if so, dateCompleted is set to current date
-    if (!originalEntry.isAccepted && args.isAccepted) {
+    // if updated as completed, add date of completion
+    if (args.isComplete) {
         // converts current date to ISO8601
         updates.dateCompleted = new Date().toISOString();
     }
