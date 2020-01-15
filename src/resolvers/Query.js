@@ -10,13 +10,16 @@ function reviewerListing(_parent, args, context) {
 }
 // REVIEWER LISTINGS (ALL)
 function reviewerListings(_parent, args, context) {
-    // opArgs holds arguments that can be used to filter queries
+    // opArgs holds arguments that can be used to filter queries including what order to return data
     const opArgs = {
+        orderBy: args.orderBy,
         where: {
             // query only returns publshed postings
             AND: [{ isPublished: true }]
         }
     }
+
+
     // split string and assign lesser value to price_gte and greater value to price_lte
     if (args.price) {
         // provide price as a range in a string '#floor, #ceiling'
@@ -106,7 +109,7 @@ function acceptedReviewsBySeeker(_parent, args, context) {
 }
 
 // Denied Reviews By Seeker (FE SeekerPanel)
-function deniedReviewsBySeeker(_parent, args, context){
+function deniedReviewsBySeeker(_parent, args, context) {
     const userID = getUserId(context)
     const opArgs = {
         where: {
@@ -131,7 +134,6 @@ module.exports = {
     acceptedResumeReviews,
     completedResumeReviews,
     declinedResumeReviews,
-    resumeReviewsBySeeker,
     acceptedReviewsBySeeker,
     deniedReviewsBySeeker,
 }
