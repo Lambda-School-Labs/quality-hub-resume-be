@@ -97,22 +97,26 @@ function listingByReviewer(_parent, args, context) {
     })
 }
 
-//NEW QUERY
-// get reviews by seekerID
-// Where seeker is UserID from getUserID function
-// DisplayAccepted oness
-// function resumeReviewsBySeeker(_parent, args, context){
-//     const userID = getUserId(context)
-//     return context.prisma.resumeReviews({
-//         seeker: userID
-//     })
-// }
-
-function resumeReviewsBySeeker(_parent, args, context) {
+// Accepted Reviews By Seeker (FE SeekerPanel)
+function acceptedReviewsBySeeker(_parent, args, context) {
     const userID = getUserId(context)
-    return context.prisma.resumeReviews({
-        where: { seeker: userID }
-    })
+    const opArgs = {
+        where: {
+            AND: [{ seeker: userID }, { isAccepted: true }]
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
+}
+
+// Denied Reviews By Seeker (FE SeekerPanel)
+function deniedReviewsBySeeker(_parent, args, context){
+    const userID = getUserId(context)
+    const opArgs = {
+        where: {
+            AND: [{ seeker: userID }, { isDenied: true }]
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
 }
 
 
@@ -131,4 +135,6 @@ module.exports = {
     completedResumeReviews,
     declinedResumeReviews,
     resumeReviewsBySeeker,
+    acceptedReviewsBySeeker,
+    deniedReviewsBySeeker,
 }
