@@ -109,7 +109,7 @@ function acceptedReviewsBySeeker(_parent, args, context) {
 }
 
 // Denied Reviews By Seeker (FE SeekerPanel)
-function deniedReviewsBySeeker(_parent, args, context){
+function deniedReviewsBySeeker(_parent, args, context) {
     const userID = getUserId(context)
     const opArgs = {
         where: {
@@ -134,7 +134,6 @@ module.exports = {
     acceptedResumeReviews,
     completedResumeReviews,
     declinedResumeReviews,
-    resumeReviewsBySeeker,
     acceptedReviewsBySeeker,
     deniedReviewsBySeeker,
 }
