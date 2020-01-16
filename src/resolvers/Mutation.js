@@ -85,12 +85,12 @@ async function createResumeReview(parent, args, context) {
     console.log(`createResumeReview / requestExists`, requestExists)
     console.log(`createResumeReview / reviewNotCompleted`, reviewNotCompleted)
 
-    if (requestExists) {
+    if (requestExists.length > 0) {
         console.log(`request already exists and will throw error`)
         throw new Error('Request between seeker and coach already exists.')
     }
 
-    if (reviewNotCompleted) {
+    if (reviewNotCompleted.length > 0) {
         console.log(`review is in progress and will throw error`)
         throw new Error(`A review between user and coach is already in progress.`)
     }
