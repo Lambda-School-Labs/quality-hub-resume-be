@@ -43,6 +43,11 @@ function resumeReviews(_parent, args, context) {
     return context.prisma.resumeReviews()
 }
 
+// function resumeReviewByUsers(_parent, args, context) {
+//     console.log(`resumeReviewByUsers/ args`, args)
+//     return context.prisma.resumeReview(args)
+// }
+
 // Query to return the ResumeReviews that are -requested- (i.e. where isPending = true and isAccepted = false)
 function requestedResumeReviews(_parent, args, context) {
     const userID = getUserId(context)

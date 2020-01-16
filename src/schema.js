@@ -13,7 +13,11 @@ extend type Query{
         price: String
         orderBy: String
     ): [ReviewerListing]!
-    resumeReview(id: String!): ResumeReview!
+    resumeReview(
+        id: String,
+        coach: String,
+        seeker: String
+        ): ResumeReview!
     resumeReviews: [ResumeReview]!
     requestedResumeReviews: [ResumeReview]!
     acceptedResumeReviews: [ResumeReview]!
