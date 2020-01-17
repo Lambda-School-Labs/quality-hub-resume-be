@@ -56,10 +56,39 @@ function deleteReviewerListing(parent, args, context) {
 
 
 ///
-// MUTATION CREATE RESUME REVIEW "POST"
-function createResumeReview(parent, args, context) {
+// MUTATION CREATE RESUME REVIEW "POST" -- this creates the request from a seeker to a coach
+async function createResumeReview(parent, args, context) {
 
     const userID = getUserId(context)
+
+    // check if ResumeReview exists between two users, throw error if so.
+    // checks if a ResumeReview exists that has been requested but not accepted
+    const requestExists = await context.prisma.resumeReviews({
+        where: {
+            AND: [{ isPending: true }, { isAccepted: false }, { seeker: userID }, { coach: args.coach }]
+        },
+    })
+
+    // checks if a ResumeReview exists that has been accepted but not completed
+    const reviewNotCompleted = await context.prisma.resumeReviews({
+        where: {
+            AND: [{ isAccepted: true }, { isComplete: false }, { seeker: userID }, { coach: args.coach }]
+        },
+
+    })
+
+    console.log(`createResumeReview / requestExists`, requestExists)
+    console.log(`createResumeReview / reviewNotCompleted`, reviewNotCompleted)
+
+    if (requestExists.length > 0) {
+        console.log(`request already exists and will throw error`)
+        throw new Error('Request between seeker and coach already exists.')
+    }
+
+    if (reviewNotCompleted.length > 0) {
+        console.log(`review is in progress and will throw error`)
+        throw new Error(`A review between user and coach is already in progress.`)
+    }
 
     return context.prisma.createResumeReview({
         coach: args.coach,
