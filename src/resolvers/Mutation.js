@@ -62,11 +62,6 @@ async function createResumeReview(parent, args, context) {
     const userID = getUserId(context)
 
     // check if ResumeReview exists between two users, throw error if so.
-
-    // const queryArgs = {
-    //     seeker: userID,
-    //     coach: args.coach
-    // }
     // checks if a ResumeReview exists that has been requested but not accepted
     const requestExists = await context.prisma.resumeReviews({
         where: {
