@@ -30,26 +30,132 @@ To get the server running locally:
 
 ## 2️⃣ Endpoints
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
+## CODING FLOW
+  # - Update Resolver
+  # - Update Schema
+  # - Prisma Deploy
+  # - Check Schema/Docs in playground
+  # - Check for Errors (mutations, queries, connections)
+  
+## TESTING OUTSIDE OF LOCALHOST
+  # - Prisma Deploy
+  # - Add Commit Push
+  # - Check Heroku for deploy
+  # - If not already auto deployed/deploying => deploy manually
+  # - Check Schema/Docs for updates made
+  # - Check for Errors (mutations, queries, connections)
+  
+## MAKE SURE UPDATES HAVE NOT AFFECTED GATEWAY
+  # - Check Gateway Schema/Docs for updates
+  # - Check that new updates dont conflict w/ databases in federation
+  
+## SOMETIMES UPDATES CAN CRASH GATEWAY
+  # - If this happens login to gateway heroku and re deploy
+  
+######
+####### QUERY and MUTATION LIST (localhost:4000) ########
+######
+## QUERY INFO
+# query {
+#   resumeQinfo
+# }
+########### LISTING QUERIES #################
+## QUERY LISTING by ID
+# query {
+#   reviewerListing(id: "ck4p2vbcg00cd0714wtbgf3m2"){
+#     id
+#     price
+#     position
+#     industry
+#     description
+#     createdAt
+#     updatedAt
+#     company
+#     isPublished
+#   }
+# }
+## QUERY ALL LISTINGS
+# query {
+#   reviewerListings{
+#     id
+#     price
+#     position
+#     industry
+#     description
+#     createdAt
+#     updatedAt
+#     company
+#     isPublished
+#   }
+# }
+########### LISTING MUTATIONS #################
+## MUTATION CREATE LISTING (removed reviewer from datamodel)
+# mutation {
+#   createReviewerListing(
+#     price: 200
+#     position: "new position"
+#     industry:"new industry"
+#     description: "new description"
+#     company: "string"
+#     isPublished: false
+#   ) {
+#     id
+#   }
+# }
+## MUTATION DELETE LISTING by ID
+# mutation {
+#   deleteReviewerListing(id: "ck4p479tl00fx0714o8niq2kc"){
+#     id
+#   }
+# }
+########### NEXT ###########
+########### REVIEW QUERIES #################
+## QUERY REVIEW by ID
+# query {
+#   resumeReview(id: "ck4p2ja3900b807142i54d2wl"){
+#     id
+#     name
+#     isPending
+#     isAccepted
+#     isDenied
+#     isComplete
+#   }
+# }
+## QUERY ALL REVIEWS
+# query {
+#   resumeReviews{
+#     id
+#     name
+#     isPending
+#     isAccepted
+#     isDenied
+#     isComplete
+#   }
+# }
+########### REVIEW MUTATIONS #################
+## MUTATE CREATE REVIEW ( removed "!" from     dateRequested: DateTime dateAccepted: DateTime dateCompleted: DateTime in datamodel)
+# mutation {
+#   createResumeReview(
+#     name: "test"
+#     isPending: false
+#     isAccepted: false
+#     isDenied: false
+#     isComplete: false
+#   ) {
+#     id
+#   }
+# }
+## MUTATE DELETE REVIEW
+# mutation {
+#   deleteResumeReview(id: "ck4p4g2tj00gt0714gqr1p5kr"){
+#     id
+#   }
+# }
+##################################################
+##################################################
 
-#### Organization Routes
 
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
-
-#### User Routes
-
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+                                                 |
 
 # Data Model
 

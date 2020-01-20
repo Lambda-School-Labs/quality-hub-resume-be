@@ -1,0 +1,27 @@
+
+type ReviewerListing {
+    id: ID! @id
+    coachID: String @unique
+    price: Int
+    position: String
+    industry: String
+    description: String!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    company: String
+    isPublished: Boolean! @default(value: true)
+}
+
+type ResumeReview {
+    id: ID! @id
+    coach: String!
+    seeker: String!
+    isPending: Boolean! @default(value: true)
+    isAccepted: Boolean! @default(value: false)
+    isDenied: Boolean! @default(value: false)
+    isComplete: Boolean! @default(value: false)
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+    dateAccepted: DateTime
+    dateCompleted: DateTime
+}

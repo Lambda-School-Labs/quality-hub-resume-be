@@ -1,0 +1,14 @@
+
+# mutation {
+#     createPost(
+#         data: {
+#             price: 4000
+#             position: "Head Honcho"
+#             industryName: "Quality Hub"
+#             description: "Resume description"
+#             tagString: "tags"
+#             company: "no company"
+#             isPublished: true
+#         }
+#     )
+# }
