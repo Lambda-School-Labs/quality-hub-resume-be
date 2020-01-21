@@ -102,6 +102,17 @@ function listingByReviewer(_parent, args, context) {
     })
 }
 
+// Requested Reviews by Seeker
+function requestedResumeReviewsBySeeker(_parent, args, context) {
+    const userID = getUserId(context);
+    const opArgs = {
+        where: {
+            seeker: userID
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
+}
+
 // Accepted Reviews By Seeker (FE SeekerPanel)
 function acceptedReviewsBySeeker(_parent, args, context) {
     const userID = getUserId(context)
@@ -125,7 +136,9 @@ function deniedReviewsBySeeker(_parent, args, context) {
 }
 
 
-
+function coach_resume_reviews(_parent, args, context) {
+    console.log(`coach_resume_reviews // args`, args)
+}
 
 
 module.exports = {
@@ -139,6 +152,8 @@ module.exports = {
     acceptedResumeReviews,
     completedResumeReviews,
     declinedResumeReviews,
+    requestedResumeReviewsBySeeker,
     acceptedReviewsBySeeker,
     deniedReviewsBySeeker,
+    coach_resume_reviews
 }
