@@ -25,6 +25,7 @@ extend type Query{
     declinedResumeReviews: [ResumeReview]!
     acceptedReviewsBySeeker: [ResumeReview]!
     deniedReviewsBySeeker: [ResumeReview]!
+    requestedResumeReviewsBySeeker: [ResumeReview]!
 
 
 }
