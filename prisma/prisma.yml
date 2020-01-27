@@ -1,11 +1,4 @@
 # Specifies the HTTP endpoint of your Prisma API.
-#endpoint: https://resumeqbe-8689136a16.herokuapp.com/quality-hub-resume-be/dev
-#endpoint: https://resumeqbe-8689136a16.herokuapp.com/quality-hub-resume-be/dev/quality-hub-resume-be/dev
-#endpoint: https://resumeqbe-8689136a16.herokuapp.com/quality-hub-resume-be/dev
-#endpoint: https://resumeqbe-8689136a16.herokuapp.com/dev
-# endpoint: https://resumeqbe-8689136a16.herokuapp.com/quality-hub-resume-be/dev
-#endpoint: https://resumeqbe-8689136a16.herokuapp.com/
-
 endpoint: ${env:PRISMA_ENDPOINT}
 
 # Defines your models, each model is mapped to the database as a table.
