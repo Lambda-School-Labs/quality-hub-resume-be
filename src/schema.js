@@ -93,6 +93,7 @@ type ReviewerListing {
     company: String
     isPublished: Boolean!
     coach: User!
+    # reviews: [Review!] // TODO update method for resolving reviews on a Listing--should return that coach's reviews for that microservice
 }
 
 type ResumeReview {
@@ -106,7 +107,8 @@ type ResumeReview {
     dateAccepted: DateTime
     dateCompleted: DateTime
     coach: User!
-	seeker: User!
+    seeker: User!
+    review: Review
 }
 
 extend type User @key(fields: "id"){
