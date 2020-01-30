@@ -44,7 +44,7 @@ for (i = 0; i < listingNumber; i++) {
 async function saveReviewerListings() {
   const response = await db.reviewerListings()
 
-  const users = response.map(entry => {
+  const listings = response.map(entry => {
     const { id, description, price, isPublished, coachID } = entry
     return {
       id,
@@ -55,7 +55,7 @@ async function saveReviewerListings() {
     }
   })
 
-  let stringified = JSON.stringify(users)
+  let stringified = JSON.stringify(listings)
   fs.writeFileSync((path.resolve(__dirname, "./seeded_reviewer_listings.json")), stringified, 'utf8', (err => {
     console.log(`error writing file`, err)
   }))
