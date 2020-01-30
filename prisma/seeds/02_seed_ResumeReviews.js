@@ -6,6 +6,7 @@ const db = new Prisma({
   endpoint: process.env.PRISMA_ENDPOINT
 })
 
+// retrieve seeded_users from file
 const seeded_users = fs.readFileSync((path.resolve(__dirname, './seeded_users.json')), (err => console.log(`Error`, err)))
 
 const users = JSON.parse(seeded_users);
