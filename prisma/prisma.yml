@@ -12,5 +12,5 @@ generate:
 # hooks:
 #   post-deploy:
 #     - prisma generate
-# seed:
-#   import: seed.graphql
+seed:
+  run: node ./seeds/01_seed_ReviewerListings

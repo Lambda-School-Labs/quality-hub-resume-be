@@ -107,3 +107,8 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+
+# ignore saved seed data
+seeded_users.json
+seeded_reviewer_listings.json
+seeded_resume_reviews.json
