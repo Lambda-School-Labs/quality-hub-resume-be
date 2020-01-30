@@ -22,7 +22,7 @@ const listingNumber = 10
 async function createReviewerListings(user) {
   console.log(`creating review listing for ${user.first_name} ${user.last_name} -- ID: ${user.id}`)
   // useful for making some posts published and other not
-  const randomBoolean = Date.now() % 2 === 0
+  const randomBoolean = Math.floor(Math.random() * 10) % 2 === 0
   const listing = {
     coachID: user.id,
     price: Math.floor(Math.random() * 100),
@@ -39,4 +39,28 @@ async function createReviewerListings(user) {
 
 for (i = 0; i < listingNumber; i++) {
   createReviewerListings(users[i])
+}
+
+async function saveReviewerListings() {
+  const response = await db.reviewerListings()
+
+  const users = response.map(entry => {
+    const { id, description, price, isPublished, coachID } = entry
+    return {
+      id,
+      description,
+      price,
+      isPublished,
+      coachID
+    }
+  })
+
+  let stringified = JSON.stringify(users)
+  fs.writeFileSync((path.resolve(__dirname, "./seeded_reviewer_listings.json")), stringified, 'utf8', (err => {
+    console.log(`error writing file`, err)
+  }))
+}
+
+if (process.env.PRISMA_ENDPOINT.includes('localhost')) {
+  saveReviewerListings()
 }
