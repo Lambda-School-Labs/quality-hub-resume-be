@@ -308,3 +308,7 @@ Run `npm run development` This executes the development script which assigns the
 ### Updating Prisma Service
 
 If changes are made to datamodel.prisma, the service will need to be deployed using `prisma deploy -e ../config/development.env` following that, the Prisma client will need to be generated. Run `prisma generate -e ../config/development.env` This updates src/generated with the latest version of Prisma Client.
+
+### Seeding Data for Development
+
+To add listings from seed data to the database, a json file named `seeded_users.json` containing users on the Core database must be provided in the `prisma/seeds` directory. When that file is in place, the command `prisma seed -e ../config/development.env` can be run to seed a set of ReviewerListings.
