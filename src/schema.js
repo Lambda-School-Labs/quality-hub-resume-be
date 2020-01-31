@@ -18,16 +18,16 @@ extend type Query{
         coach: String,
         seeker: String
         ): ResumeReview!
-    resumeReviews: [ResumeReview]!
-    requestedResumeReviews: [ResumeReview]!
-    acceptedResumeReviews: [ResumeReview]!
-    completedResumeReviews: [ResumeReview]!
-    declinedResumeReviews: [ResumeReview]!
-    acceptedReviewsBySeeker: [ResumeReview]!
-    deniedReviewsBySeeker: [ResumeReview]!
-    requestedResumeReviewsBySeeker: [ResumeReview]!
-
-
+    resumeReviews: [ResumeReview!]
+    requestedResumeReviews: [ResumeReview!]
+    acceptedResumeReviews: [ResumeReview!]
+    completedResumeReviews: [ResumeReview!]
+    declinedResumeReviews: [ResumeReview!]
+    acceptedResumeReviewsBySeeker: [ResumeReview!]
+    deniedResumeReviewsBySeeker: [ResumeReview!]
+    requestedResumeReviewsBySeeker: [ResumeReview!]
+    completedResumeReviewsBySeeker: [ResumeReview!]
+    
 }
 
 type Mutation{

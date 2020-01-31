@@ -4,6 +4,8 @@ function resumeQinfo() {
     return "Welcome to ResumeQ"
 }
 
+// TODO - remove redundant and unused queries
+
 // REVIEWER LISTING by ID
 function reviewerListing(_parent, args, context) {
     return context.prisma.reviewerListing({ id: args.id })
@@ -109,7 +111,7 @@ function requestedResumeReviewsBySeeker(_parent, args, context) {
 }
 
 // Accepted Reviews By Seeker (FE SeekerPanel)
-function acceptedReviewsBySeeker(_parent, args, context) {
+function acceptedResumeReviewsBySeeker(_parent, args, context) {
     const userID = getUserId(context)
     const opArgs = {
         where: {
@@ -119,8 +121,21 @@ function acceptedReviewsBySeeker(_parent, args, context) {
     return context.prisma.resumeReviews(opArgs)
 }
 
+// Accepted Reviews By Seeker (FE SeekerPanel)
+function completedResumeReviewsBySeeker(_parent, args, context) {
+    console.log(`completedResumeReviewsBySeeker`)
+    const userID = getUserId(context)
+    const opArgs = {
+        where: {
+            AND: [{ seeker: userID }, { isComplete: true }]
+        }
+    }
+    return context.prisma.resumeReviews(opArgs)
+}
+
+
 // Denied Reviews By Seeker (FE SeekerPanel)
-function deniedReviewsBySeeker(_parent, args, context) {
+function deniedResumeReviewsBySeeker(_parent, args, context) {
     const userID = getUserId(context)
     const opArgs = {
         where: {
@@ -148,7 +163,8 @@ module.exports = {
     completedResumeReviews,
     declinedResumeReviews,
     requestedResumeReviewsBySeeker,
-    acceptedReviewsBySeeker,
-    deniedReviewsBySeeker,
-    coach_resume_reviews
+    completedResumeReviewsBySeeker,
+    acceptedResumeReviewsBySeeker,
+    deniedResumeReviewsBySeeker,
+    coach_resume_reviews,
 }
