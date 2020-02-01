@@ -119,9 +119,8 @@ extend type User @key(fields: "id"){
 	seeker_resume_reviews: [ResumeReview]
 }
 
-extend type Review @key(fields:"id"){
-    id: ID! @external
-    resumeReview: ResumeReview!
+extend type Review @key(fields:"job"){
+    job: String! @external
 }
 `
 
