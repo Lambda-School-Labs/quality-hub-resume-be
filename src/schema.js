@@ -81,7 +81,7 @@ type Mutation{
 
 }
 
-type ReviewerListing {
+type ReviewerListing @key(fields: "id") @key(fields:"coach") {
     id: ID!
     price: Int
     position: String
@@ -93,11 +93,10 @@ type ReviewerListing {
     company: String
     isPublished: Boolean!
     coach: User!
-    reviews: [Review!] 
-    # // TODO update method for resolving reviews on a Listing--should return that coach's reviews for that microservice
+
 }
 
-type ResumeReview {
+type ResumeReview @key(fields: "id") {
     id: ID!
     isPending: Boolean!
     isAccepted: Boolean!
@@ -115,14 +114,17 @@ type ResumeReview {
 extend type User @key(fields: "id"){
     id: ID! @external
     reviewerListing: ReviewerListing
-    resumeReview: ResumeReview
-    coach_resume_reviews: [ResumeReview]
-	seeker_resume_reviews: [ResumeReview]
+    resume_reviews_as_coach: [ResumeReview] 
+	resume_reviews_as_seeker: [ResumeReview] 
 }
 
-extend type Review @key(fields:"job"){
+
+
+ extend type Review @key(fields:"job")   {
     job: String! @external
 }
+
+
 `
 
 module.exports = typeDefs

@@ -1,7 +1,5 @@
-
-
-function __resolveReference(resumeReview, context) {
-    return context.prisma.resumeReview({ id: resumeReview.id })
+function __resolveReference(reference, context) {
+    const res = context.prisma.resumeReview({ id: reference.id })
 }
 
 function coach(resumeReview) {

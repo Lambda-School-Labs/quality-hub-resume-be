@@ -1,13 +1,15 @@
 
+
 function reviewerListing(parent, _args, context) {
   return context.prisma.reviewerListing({ coachID: parent.id })
 }
 
-function coach_resume_reviews(parent, _args, context) {
+
+function resume_reviews_as_coach(parent, _args, context) {
   return context.prisma.resumeReviews({ where: { coach: parent.id } })
 }
 
-function seeker_resume_reviews(parent, _args, context) {
+function resume_reviews_as_seeker(parent, _args, context) {
   return context.prisma.resumeReviews({ where: { seeker: parent.id } })
 }
 
@@ -15,6 +17,6 @@ function seeker_resume_reviews(parent, _args, context) {
 
 module.exports = {
   reviewerListing,
-  coach_resume_reviews,
-  seeker_resume_reviews,
+  resume_reviews_as_coach,
+  resume_reviews_as_seeker,
 }
