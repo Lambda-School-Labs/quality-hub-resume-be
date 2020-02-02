@@ -93,7 +93,8 @@ type ReviewerListing {
     company: String
     isPublished: Boolean!
     coach: User!
-    # reviews: [Review!] // TODO update method for resolving reviews on a Listing--should return that coach's reviews for that microservice
+    reviews: [Review!] 
+    # // TODO update method for resolving reviews on a Listing--should return that coach's reviews for that microservice
 }
 
 type ResumeReview {
