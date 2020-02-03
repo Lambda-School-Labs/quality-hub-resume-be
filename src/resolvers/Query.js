@@ -146,10 +146,6 @@ function deniedResumeReviewsBySeeker(_parent, args, context) {
 }
 
 
-function coach_resume_reviews(_parent, args, context) {
-    console.log(`coach_resume_reviews // args`, args)
-}
-
 
 module.exports = {
     resumeQinfo,
@@ -166,5 +162,4 @@ module.exports = {
     completedResumeReviewsBySeeker,
     acceptedResumeReviewsBySeeker,
     deniedResumeReviewsBySeeker,
-    coach_resume_reviews,
 }
