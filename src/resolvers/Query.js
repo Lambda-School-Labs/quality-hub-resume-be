@@ -115,7 +115,7 @@ function acceptedResumeReviewsBySeeker(_parent, args, context) {
     const userID = getUserId(context)
     const opArgs = {
         where: {
-            AND: [{ seeker: userID }, { isAccepted: true }]
+            AND: [{ seeker: userID }, { isAccepted: true }, { isComplete: false }]
         }
     }
     return context.prisma.resumeReviews(opArgs)
