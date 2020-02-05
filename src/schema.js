@@ -18,16 +18,16 @@ extend type Query{
         coach: String,
         seeker: String
         ): ResumeReview!
-    resumeReviews: [ResumeReview]!
-    requestedResumeReviews: [ResumeReview]!
-    acceptedResumeReviews: [ResumeReview]!
-    completedResumeReviews: [ResumeReview]!
-    declinedResumeReviews: [ResumeReview]!
-    acceptedReviewsBySeeker: [ResumeReview]!
-    deniedReviewsBySeeker: [ResumeReview]!
-    requestedResumeReviewsBySeeker: [ResumeReview]!
-
-
+    resumeReviews: [ResumeReview!]
+    requestedResumeReviews: [ResumeReview!]
+    acceptedResumeReviews: [ResumeReview!]
+    completedResumeReviews: [ResumeReview!]
+    declinedResumeReviews: [ResumeReview!]
+    acceptedResumeReviewsBySeeker: [ResumeReview!]
+    deniedResumeReviewsBySeeker: [ResumeReview!]
+    requestedResumeReviewsBySeeker: [ResumeReview!]
+    completedResumeReviewsBySeeker: [ResumeReview!]
+    
 }
 
 type Mutation{
@@ -81,7 +81,7 @@ type Mutation{
 
 }
 
-type ReviewerListing {
+type ReviewerListing @key(fields: "id") @key(fields:"coach") {
     id: ID!
     price: Int
     position: String
@@ -93,9 +93,10 @@ type ReviewerListing {
     company: String
     isPublished: Boolean!
     coach: User!
+
 }
 
-type ResumeReview {
+type ResumeReview @key(fields: "id") {
     id: ID!
     isPending: Boolean!
     isAccepted: Boolean!
@@ -106,16 +107,23 @@ type ResumeReview {
     dateAccepted: DateTime
     dateCompleted: DateTime
     coach: User!
-	seeker: User!
+    seeker: User!
+    review: Review
 }
 
 extend type User @key(fields: "id"){
     id: ID! @external
     reviewerListing: ReviewerListing
-    resumeReview: ResumeReview
-    coach_resume_reviews: [ResumeReview]
-	seeker_resume_reviews: [ResumeReview]
+    resume_reviews_as_coach: [ResumeReview] 
+	resume_reviews_as_seeker: [ResumeReview] 
 }
+
+
+
+ extend type Review @key(fields:"job")   {
+    job: String! @external
+}
+
 
 `
 

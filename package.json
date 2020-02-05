@@ -10,7 +10,8 @@
     "test": "jest --watch",
     "server": "nodemon src/index.js",
     "start": "node src/index.js",
-    "development": "env-cmd -f ./config/development.env nodemon src/index.js"
+    "development": "env-cmd -f ./config/development.env nodemon src/index.js",
+    "seed_reviewer_listing_requests": "env-cmd -f ./config/development.env node prisma/seeds/02_seed_ResumeReviews.js"
   },
   "repository": {
     "type": "git",
