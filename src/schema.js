@@ -1,23 +1,18 @@
-const { gql } = require('apollo-server')
+const { gql } = require("apollo-server");
 
 const typeDefs = gql`
+  scalar DateTime
 
-scalar DateTime
-
-extend type Query{
+  extend type Query {
     resumeQinfo: String!
     reviewerListing(id: String!): ReviewerListing!
     listingByReviewer: ReviewerListing
     reviewerListings(
-        description: String
-        price: String
-        orderBy: String
+      description: String
+      price: String
+      orderBy: String
     ): [ReviewerListing]!
-    resumeReview(
-        id: String,
-        coach: String,
-        seeker: String
-        ): ResumeReview!
+    resumeReview(id: String, coach: String, seeker: String): ResumeReview!
     resumeReviews: [ResumeReview!]
     requestedResumeReviews: [ResumeReview!]
     acceptedResumeReviews: [ResumeReview!]
@@ -27,61 +22,49 @@ extend type Query{
     deniedResumeReviewsBySeeker: [ResumeReview!]
     requestedResumeReviewsBySeeker: [ResumeReview!]
     completedResumeReviewsBySeeker: [ResumeReview!]
-    
-}
+  }
 
-type Mutation{
-
+  type Mutation {
     createReviewerListing(
-        price: Int
-        position: String
-        industry: String
-        description: String
-        createdAt: DateTime
-        updatedAt: DateTime
-        company: String
-        isPublished: Boolean
+      price: Int
+      position: String
+      industry: String
+      description: String
+      createdAt: DateTime
+      updatedAt: DateTime
+      company: String
+      isPublished: Boolean
     ): ReviewerListing!
 
     updateReviewerListing(
-        id: String!
-        price: Int
-        position: String
-        industry: String
-        description: String
-        createdAt: DateTime
-        updatedAt: DateTime
-        company: String
-        isPublished: Boolean
+      id: String!
+      price: Int
+      position: String
+      industry: String
+      description: String
+      createdAt: DateTime
+      updatedAt: DateTime
+      company: String
+      isPublished: Boolean
     ): ReviewerListing!
 
-    deleteReviewerListing(
-        id: String!
-    ): ReviewerListing!
+    deleteReviewerListing(id: String!): ReviewerListing!
 
-    createResumeReview(
-        coach: String!
-    ): ResumeReview!
-    
+    createResumeReview(coach: String!): ResumeReview!
+
     respondResumeReview(
-        id:String!
-        isPending: Boolean!
-        isAccepted: Boolean!
-        isDenied: Boolean!
+      id: String!
+      isPending: Boolean!
+      isAccepted: Boolean!
+      isDenied: Boolean!
     ): ResumeReview
 
-    updateResumeReview(
-        id: String!
-        isComplete: Boolean
-    ): ResumeReview
+    updateResumeReview(id: String!, isComplete: Boolean): ResumeReview
 
-    deleteResumeReview(
-        id: String!
-    ): ResumeReview!
+    deleteResumeReview(id: String!): ResumeReview!
+  }
 
-}
-
-type ReviewerListing @key(fields: "id") @key(fields:"coach") {
+  type ReviewerListing @key(fields: "id") @key(fields: "coach") {
     id: ID!
     price: Int
     position: String
@@ -93,10 +76,9 @@ type ReviewerListing @key(fields: "id") @key(fields:"coach") {
     company: String
     isPublished: Boolean!
     coach: User!
+  }
 
-}
-
-type ResumeReview @key(fields: "id") {
+  type ResumeReview @key(fields: "id") {
     id: ID!
     isPending: Boolean!
     isAccepted: Boolean!
@@ -109,22 +91,18 @@ type ResumeReview @key(fields: "id") {
     coach: User!
     seeker: User!
     review: Review
-}
+  }
 
-extend type User @key(fields: "id"){
-    id: ID! @external
+  extend type User @key(fields: "authId") {
+    authId: String! @external
     reviewerListing: ReviewerListing
-    resume_reviews_as_coach: [ResumeReview] 
-	resume_reviews_as_seeker: [ResumeReview] 
-}
+    resume_reviews_as_coach: [ResumeReview]
+    resume_reviews_as_seeker: [ResumeReview]
+  }
 
-
-
- extend type Review @key(fields:"job")   {
+  extend type Review @key(fields: "job") {
     job: String! @external
-}
+  }
+`;
 
-
-`
-
-module.exports = typeDefs
+module.exports = typeDefs;
