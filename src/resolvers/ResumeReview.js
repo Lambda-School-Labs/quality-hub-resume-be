@@ -3,11 +3,11 @@ function __resolveReference(reference, context) {
 }
 
 function coach(resumeReview) {
-    return { __typename: 'User', id: resumeReview.coach }
+    return { __typename: 'User', authId: resumeReview.coach }
 }
 
 function seeker(resumeReview) {
-    return { __typename: 'User', id: resumeReview.seeker };
+    return { __typename: 'User', authId: resumeReview.seeker };
 }
 
 // provides information to __resolveReference in Core Review resolver
